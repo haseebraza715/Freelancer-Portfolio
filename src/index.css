@@ -1,48 +1,37 @@
-/* Importing TailwindCSS and additional resources */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "devicon/devicon.min.css";
 
-/* Global Body Styling */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;700&display=swap");
+
 body {
-  margin: 0;
-  font-family: "JetBrains Mono", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  @apply font-jetbrains; /* Ensures Tailwind applies the font globally */
+  font-family: "Inter", sans-serif; 
 }
 
-/* Dark/Light Theme */
-body.dark {
-  background-color: #111827; /* Dark theme background */
-  color: white;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-family: "Poppins", sans-serif; 
 }
 
-body.light {
-  background-color: #f9f9f7; /* Light theme background */
-  color: #1a202c;
+.accent-text {
+  font-family: "Playfair Display", serif; 
 }
 
-/* Code Blocks */
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-/* Links */
 a {
   text-decoration: none;
   color: inherit;
 }
 a:hover {
-  color: #38bdf8; /* Tailwind's sky-blue color */
+  color: #38bdf8;
   transition: color 0.3s ease;
 }
 
-/* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
 }
@@ -117,13 +106,6 @@ html {
   animation: gradient-animation 10s ease infinite;
 }
 
-/* Light Theme Hero Gradient */
-.bg-hero-gradient-light {
-  background: linear-gradient(135deg, #f4f3ef, #eae8e0, #efeee8);
-  background-size: 400% 400%;
-  animation: gradient-animation 10s ease infinite;
-}
-
 .scroll-to-top {
   position: fixed;
   bottom: 30px;
@@ -188,20 +170,6 @@ html {
   transform: translateY(0);
 }
 
-/* Testimonial Hover Effects */
-.testimonial-card {
-  position: relative;
-  overflow: hidden;
-  background: #1a202c;
-  padding: 24px;
-  border-radius: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.testimonial-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 15px rgba(59, 130, 246, 0.5);
-}
-
 /* Responsive Typography */
 @media (max-width: 768px) {
   .text-lg {
@@ -218,5 +186,28 @@ html {
   }
   .text-4xl {
     font-size: 1.875rem;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
   }
 }

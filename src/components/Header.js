@@ -26,22 +26,24 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed w-full top-0 z-50 shadow-lg transition-all duration-300 ${
-        isScrolled ? "bg-gray-900/90 backdrop-blur" : "bg-transparent"
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "shadow-lg backdrop-blur-md bg-black/80" // Dark background when scrolled
+          : "bg-transparent"
       }`}
       role="banner"
     >
       {/* Scroll Progress Bar */}
       <div
-        className="fixed top-0 left-0 h-1 bg-blue-500 z-50"
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-[#4A90E2] via-[#50E3C2] to-[#4A90E2] z-50"
         style={{ width: `${scrollProgress}%` }}
         aria-hidden="true"
       ></div>
 
-      <div className="container mx-auto flex items-center justify-between px-6 py-4 text-white">
+      <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 py-3 text-white">
         {/* Logo */}
         <div
-          className="text-2xl font-extrabold tracking-wide bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+          className="text-lg sm:text-xl md:text-2xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-[#4A90E2] via-[#50E3C2] to-[#4A90E2]"
           role="heading"
           aria-level="1"
         >
@@ -49,17 +51,19 @@ const Header = () => {
         </div>
 
         {/* Navigation Links */}
-        <nav className="hidden md:flex space-x-8" aria-label="Main Navigation">
+        <nav className="hidden lg:flex space-x-6" aria-label="Main Navigation">
           {["Home", "About", "Services", "Portfolio", "Contact"].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="relative group hover:text-blue-400 transition-colors"
+              className={`relative group text-sm lg:text-base hover:text-transparent bg-clip-text bg-gradient-to-r from-[#4A90E2] via-[#50E3C2] to-[#4A90E2] ${
+                isScrolled ? "text-white" : "text-white"
+              } transition-colors`}
               tabIndex="0"
               aria-label={`Go to ${item}`}
             >
               {item}
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all"></span>
+              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#4A90E2] via-[#50E3C2] to-[#4A90E2] group-hover:w-full transition-all"></span>
             </a>
           ))}
         </nav>
@@ -67,8 +71,8 @@ const Header = () => {
         {/* Mobile Menu Button */}
         <motion.button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-white focus:outline-none text-2xl ml-4"
-          whileHover={{ scale: 1.2 }}
+          className="lg:hidden text-white focus:outline-none text-2xl ml-4"
+          whileHover={{ scale: 1.1 }}
           aria-label={menuOpen ? "Close Menu" : "Open Menu"}
         >
           {menuOpen ? "✖" : "☰"}
@@ -80,7 +84,7 @@ const Header = () => {
         initial={{ height: 0 }}
         animate={{ height: menuOpen ? "auto" : 0 }}
         transition={{ duration: 0.3 }}
-        className="md:hidden overflow-hidden bg-gray-900 text-white"
+        className="lg:hidden overflow-hidden bg-gradient-to-br from-[#4A90E2] via-[#50E3C2] to-[#4A90E2] text-white shadow-lg"
         role="menu"
         aria-expanded={menuOpen}
       >
@@ -95,7 +99,7 @@ const Header = () => {
               >
                 <a
                   href={`#${item.toLowerCase()}`}
-                  className="hover:text-blue-400 transition-colors block"
+                  className="hover:text-transparent bg-clip-text bg-gradient-to-r from-[#4A90E2] via-[#50E3C2] to-[#4A90E2] transition-colors block text-lg"
                   onClick={() => setMenuOpen(false)}
                   role="menuitem"
                   tabIndex="0"

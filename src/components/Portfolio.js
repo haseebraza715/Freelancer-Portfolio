@@ -1,121 +1,189 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import cover from "../images/cover.jpg";
 
 const Portfolio = () => {
-  const projects = [
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const categories = ["All", "Finance", "Data Analytics", "Web Development"];
+  const allProjects = [
     {
       id: 1,
-      title: "E-Commerce Website",
-      description: "A modern and fully responsive e-commerce platform.",
+      category: "Finance",
+      title: "Budget Tracker",
+      description: "Track your expenses and savings efficiently.",
       image: cover,
-      technologies: ["React", "Node.js", "Tailwind CSS"],
       link: "#",
     },
     {
       id: 2,
-      title: "Portfolio Website",
-      description: "A personal portfolio to showcase skills and projects.",
+      category: "Finance",
+      title: "Investment Dashboard",
+      description: "Visualize and manage your investments in real-time.",
       image: cover,
-      technologies: ["HTML", "CSS", "JavaScript"],
       link: "#",
     },
     {
       id: 3,
-      title: "Blog Platform",
-      description:
-        "A user-friendly platform for publishing and managing blogs.",
+      category: "Data Analytics",
+      title: "Data Visualization Tool",
+      description: "Interactive dashboards for insightful data analysis.",
       image: cover,
-      technologies: ["Next.js", "Contentful", "Sass"],
       link: "#",
     },
     {
       id: 4,
-      title: "Landing Page",
-      description: "An engaging and visually appealing landing page.",
+      category: "Data Analytics",
+      title: "Predictive Analytics Platform",
+      description: "AI-driven predictions based on historical data.",
       image: cover,
-      technologies: ["Vue.js", "Bootstrap"],
+      link: "#",
+    },
+    {
+      id: 5,
+      category: "Web Development",
+      title: "E-Commerce Website",
+      description: "A modern and fully responsive e-commerce platform.",
+      image: cover,
+      link: "#",
+    },
+    {
+      id: 6,
+      category: "Web Development",
+      title: "Portfolio Website",
+      description: "A personal portfolio to showcase skills and projects.",
+      image: cover,
       link: "#",
     },
   ];
 
+  const filteredProjects =
+    activeCategory === "All"
+      ? allProjects
+      : allProjects.filter((project) => project.category === activeCategory);
+
+  const openModal = (project) => {
+    setSelectedProject(project);
+    setShowModal(true);
+  };
+
   return (
-    <section
-      id="portfolio"
-      className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20"
-    >
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-blue-500 opacity-20 blur-2xl rounded-full z-0"></div>
-      <div className="absolute bottom-0 right-0 w-40 h-40 bg-purple-500 opacity-20 blur-2xl rounded-full z-0"></div>
+    <section className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-white py-16">
+      {/* Background Effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute w-1/3 h-1/3 bg-blue-100 rounded-full blur-3xl opacity-50 top-16 left-20"></div>
+        <div className="absolute w-1/4 h-1/4 bg-purple-100 rounded-full blur-3xl opacity-50 bottom-10 right-20"></div>
+      </div>
 
       <motion.div
-        className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10"
+        className="container mx-auto px-6 text-center relative z-10"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        {/* Section Title */}
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          Our Portfolio
-        </motion.h2>
+        {/* Header Section */}
+        <h2 className="text-5xl font-extrabold text-gray-800 mb-4">
+          <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+            Our
+          </span>{" "}
+          <span className="text-gray-900">Portfolio</span>
+        </h2>
+        <p className="text-xl text-gray-600 mb-12">
+          Showcasing our{" "}
+          <span className="font-semibold text-gray-800">
+            most innovative work
+          </span>
+        </p>
+
+        {/* Filter Buttons */}
+        <div className="flex justify-center space-x-4 mb-12">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-transform transform ${
+                activeCategory === category
+                  ? "bg-blue-500 text-white scale-105 shadow-md"
+                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {projects.map((project, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="relative bg-gray-800 rounded-lg shadow-lg overflow-hidden group transform hover:scale-105 transition-transform hover:shadow-2xl"
-              whileHover={{ scale: 1.05 }}
-              initial={{ opacity: 0, y: 30 }}
+              className="relative bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all"
+              whileHover={{ y: -10 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
+              onClick={() => openModal(project)}
             >
               {/* Project Image */}
-              <div className="relative">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                  <h3 className="text-lg font-semibold text-white">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-gray-300">
-                    {project.technologies.join(", ")}
-                  </p>
-                </div>
-              </div>
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-48 object-cover rounded-t-xl"
+              />
 
-              {/* Project Info */}
+              {/* Project Details */}
               <div className="p-6">
-                <h4 className="text-lg font-semibold mb-2">{project.title}</h4>
-                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                <h4 className="text-lg font-bold text-gray-800 mb-2">
+                  {project.title}
+                </h4>
+                <p className="text-sm text-gray-600 mb-4">
                   {project.description}
                 </p>
-                {/* View Project Button */}
-                <motion.a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 transition-all"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View Project
-                </motion.a>
+                <span className="text-blue-500 font-medium hover:underline cursor-pointer">
+                  View Details
+                </span>
               </div>
             </motion.div>
           ))}
         </div>
       </motion.div>
+
+      {/* Modal for Project Details */}
+      {showModal && selectedProject && (
+        <motion.div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <div className="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
+              onClick={() => setShowModal(false)}
+            >
+              &times;
+            </button>
+            <img
+              src={selectedProject.image}
+              alt={selectedProject.title}
+              className="w-full h-48 object-cover rounded-lg mb-4"
+            />
+            <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
+            <p className="text-gray-700 mb-4">{selectedProject.description}</p>
+            <a
+              href={selectedProject.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 font-medium hover:underline"
+            >
+              View Full Project
+            </a>
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 };

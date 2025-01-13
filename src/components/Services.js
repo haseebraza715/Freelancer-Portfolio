@@ -27,13 +27,20 @@ const Services = () => {
   ];
 
   return (
-    <section
-      id="services"
-      className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20"
-    >
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-blue-500 opacity-30 blur-2xl rounded-full z-0"></div>
-      <div className="absolute bottom-0 right-0 w-40 h-40 bg-purple-500 opacity-30 blur-2xl rounded-full z-0"></div>
+    <section id="services" className="relative bg-white py-20 overflow-hidden">
+      {/* Subtle Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-purple-50 opacity-80 z-0"></div>
+      {/* Parallax Background Elements */}
+      <motion.div
+        className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-r from-blue-300 to-purple-300 opacity-30 blur-3xl rounded-full"
+        animate={{ x: [0, 20, -20], y: [0, 20, -20] }}
+        transition={{ repeat: Infinity, duration: 6 }}
+      ></motion.div>
+      <motion.div
+        className="absolute bottom-0 right-0 w-56 h-56 bg-gradient-to-r from-pink-300 to-purple-300 opacity-30 blur-3xl rounded-full"
+        animate={{ x: [0, -20, 20], y: [0, -20, 20] }}
+        transition={{ repeat: Infinity, duration: 8 }}
+      ></motion.div>
 
       <motion.div
         className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10"
@@ -44,49 +51,53 @@ const Services = () => {
       >
         {/* Section Title */}
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+          className="text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
           What We Offer
         </motion.h2>
+        {/* Subtitle */}
+        <p className="text-gray-600 text-lg md:text-xl text-center mt-4">
+          High-quality, tailored services to meet your needs.
+        </p>
 
         {/* Service Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mt-12">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="relative bg-gray-800 rounded-lg shadow-lg p-6 text-center transform hover:scale-105 transition-all hover:shadow-xl group"
+              className="relative bg-white rounded-xl shadow-md p-6 text-center transform hover:scale-105 transition-all hover:shadow-lg group"
               whileHover={{
                 scale: 1.05,
-                rotate: 1,
               }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.2 }}
+              transition={{ duration: 0.4, delay: index * 0.15 }}
             >
-              {/* Icon with Hover Effect */}
-              <div className="flex flex-col items-center">
-                <motion.div
-                  whileHover={{ rotate: 10, scale: 1.2 }}
-                  className="hover:animate-pulse"
-                >
-                  {service.icon}
-                </motion.div>
-
-                {/* Title */}
-                <h3 className="text-xl font-semibold mt-4">{service.title}</h3>
-
-                {/* Description */}
-                <p className="text-gray-400 mt-2 group-hover:text-gray-200 transition-colors">
-                  {service.description}
-                </p>
+              <div className="flex justify-center items-center w-24 h-24 mx-auto bg-gradient-to-r from-blue-100 to-purple-100 rounded-full">
+                {service.icon}
               </div>
 
-              {/* Decorative Border for Hover */}
-              <div className="absolute inset-0 border-2 border-transparent rounded-lg group-hover:border-gradient-to-r from-blue-400 to-purple-400 pointer-events-none transition-all"></div>
+              {/* Title */}
+              <h3 className="text-xl font-semibold mt-4 text-gray-800">
+                {service.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-gray-600 mt-2 group-hover:text-gray-800 transition-colors">
+                {service.description}
+              </p>
+
+              {/* Learn More Button */}
+              <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                Learn More
+              </button>
+
+              {/* Decorative Gradient Border for Hover */}
+              <div className="absolute inset-0 border-2 border-transparent rounded-xl group-hover:border-gradient-to-r from-blue-400 to-purple-400 pointer-events-none transition-all"></div>
             </motion.div>
           ))}
         </div>

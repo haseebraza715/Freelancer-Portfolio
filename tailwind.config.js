@@ -1,23 +1,21 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  darkMode: "class", // Enable class-based dark mode
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // Ensure Tailwind scans your source files
-  ],
+  darkMode: "class",
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        jetbrains: ["JetBrains Mono", ...defaultTheme.fontFamily.sans],
+        caveat: ["Caveat", "serif"],
+        libre: ["Libre Baskerville", "serif"],
+        radley: ["Radley", "serif"],
       },
       colors: {
-        // Add custom light theme colors
         light: {
           background: "#f9f9f7",
           foreground: "#1a202c",
           accent: "#eae8e0",
         },
-        // Add custom dark theme colors
         dark: {
           background: "#111827",
           foreground: "#ffffff",
@@ -25,16 +23,22 @@ module.exports = {
         },
       },
       animation: {
-        // Custom animations
         "gradient-shift": "gradient-animation 10s ease infinite",
+        "fade-in": "fadeIn 1s ease-in-out",
       },
       keyframes: {
-        // Keyframes for gradient animations
         "gradient-animation": {
           "0%": { "background-position": "0% 50%" },
           "50%": { "background-position": "100% 50%" },
           "100%": { "background-position": "0% 50%" },
         },
+        fadeIn: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+      },
+      screens: {
+        xs: "480px",
       },
     },
   },

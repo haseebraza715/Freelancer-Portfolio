@@ -33,10 +33,26 @@ const Testimonials = () => {
   return (
     <section
       id="testimonials"
-      className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20"
+      className="relative bg-white py-20 overflow-hidden"
     >
+      {/* Subtle Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-purple-50 opacity-80 z-0"></div>
+
+      {/* Parallax Background Elements */}
       <motion.div
-        className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20"
+        className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-r from-blue-300 to-purple-300 opacity-30 blur-3xl rounded-full"
+        animate={{ x: [0, 20, -20], y: [0, 20, -20] }}
+        transition={{ repeat: Infinity, duration: 6 }}
+      ></motion.div>
+      <motion.div
+        className="absolute bottom-0 right-0 w-56 h-56 bg-gradient-to-r from-pink-300 to-purple-300 opacity-30 blur-3xl rounded-full"
+        animate={{ x: [0, -20, 20], y: [0, -20, 20] }}
+        transition={{ repeat: Infinity, duration: 8 }}
+      ></motion.div>
+
+      {/* Content */}
+      <motion.div
+        className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 relative z-10"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -53,11 +69,11 @@ const Testimonials = () => {
         </motion.h2>
 
         {/* Testimonial Cards in Responsive Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
-              className="bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105"
+              className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center transform hover:scale-105 transition-all hover:shadow-xl group"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -70,15 +86,15 @@ const Testimonials = () => {
                 whileHover={{ scale: 1.1 }}
               />
               {/* Client Feedback */}
-              <p className="text-gray-300 text-sm sm:text-base mb-4 italic leading-relaxed">
+              <p className="text-gray-600 text-sm sm:text-base mb-4 italic leading-relaxed group-hover:text-gray-800 transition-colors">
                 "{testimonial.feedback}"
               </p>
               {/* Client Name */}
-              <h4 className="text-lg sm:text-xl font-semibold">
+              <h4 className="text-lg sm:text-xl font-semibold text-gray-800">
                 {testimonial.name}
               </h4>
               {/* Client Role */}
-              <p className="text-sm sm:text-base text-gray-400">
+              <p className="text-sm sm:text-base text-gray-500">
                 {testimonial.role}
               </p>
             </motion.div>
