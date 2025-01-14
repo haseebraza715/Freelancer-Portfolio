@@ -1,128 +1,200 @@
 import React from "react";
-import "devicon/devicon.min.css"; // Ensure Devicon CSS is loaded
-import { motion } from "framer-motion"; // Framer Motion for animations
+import { motion } from "framer-motion";
+import {
+  FaChartLine,
+  FaPalette,
+  FaCoins,
+  FaLightbulb,
+  FaCode,
+  FaHtml5,
+  FaCss3,
+  FaJs,
+  FaReact,
+  FaNodeJs,
+  FaGitAlt,
+  FaBuilding,
+  FaGlobe,
+  FaHandHoldingUsd,
+  FaIndustry,
+  FaRocket,
+  FaLandmark,
+  FaHandsHelping,
+} from "react-icons/fa";
 
 const AboutUs = () => {
+  const industries = [
+    {
+      name: "Leading Conglomerates & Corporations",
+      icon: <FaBuilding className="w-5 h-5 mr-2" />,
+      gradient: "from-blue-100 to-purple-100",
+    },
+    {
+      name: "Multinational Corporations",
+      icon: <FaGlobe className="w-5 h-5 mr-2" />,
+      gradient: "from-green-100 to-blue-100",
+    },
+    {
+      name: "Private Equity Firms",
+      icon: <FaHandHoldingUsd className="w-5 h-5 mr-2" />,
+      gradient: "from-yellow-100 to-orange-100",
+    },
+    {
+      name: "Mid-size Industrial Companies",
+      icon: <FaIndustry className="w-5 h-5 mr-2" />,
+      gradient: "from-purple-100 to-pink-100",
+    },
+    {
+      name: "Start-ups & Corporate Venture Capital Clients",
+      icon: <FaRocket className="w-5 h-5 mr-2" />,
+      gradient: "from-indigo-100 to-blue-100",
+    },
+    {
+      name: "Government Institutions",
+      icon: <FaLandmark className="w-5 h-5 mr-2" />,
+      gradient: "from-red-100 to-orange-100",
+    },
+    {
+      name: "Non-profit Organizations",
+      icon: <FaHandsHelping className="w-5 h-5 mr-2" />,
+      gradient: "from-green-100 to-teal-100",
+    },
+  ];
+
+  const services = [
+    {
+      name: "Strategy Development",
+      icon: <FaChartLine className="w-12 h-12 mb-4 text-blue-500" />,
+      color: "bg-blue-100",
+    },
+    {
+      name: "Branding & Positioning",
+      icon: <FaPalette className="w-12 h-12 mb-4 text-purple-500" />,
+      color: "bg-purple-100",
+    },
+    {
+      name: "Financial Transformation",
+      icon: <FaCoins className="w-12 h-12 mb-4 text-yellow-500" />,
+      color: "bg-yellow-100",
+    },
+    {
+      name: "Value Creation",
+      icon: <FaLightbulb className="w-12 h-12 mb-4 text-green-500" />,
+      color: "bg-green-100",
+    },
+    {
+      name: "Full Stack Development",
+      icon: <FaCode className="w-12 h-12 mb-4 text-indigo-500" />,
+      color: "bg-indigo-100",
+    },
+  ];
+
+  const skills = [
+    {
+      name: "HTML",
+      icon: <FaHtml5 className="w-8 h-8 mb-2 text-orange-500" />,
+      color: "bg-orange-100",
+    },
+    {
+      name: "CSS",
+      icon: <FaCss3 className="w-8 h-8 mb-2 text-blue-500" />,
+      color: "bg-blue-100",
+    },
+    {
+      name: "JavaScript",
+      icon: <FaJs className="w-8 h-8 mb-2 text-yellow-500" />,
+      color: "bg-yellow-100",
+    },
+    {
+      name: "React",
+      icon: <FaReact className="w-8 h-8 mb-2 text-blue-500" />,
+      color: "bg-blue-100",
+    },
+    {
+      name: "Node.js",
+      icon: <FaNodeJs className="w-8 h-8 mb-2 text-green-500" />,
+      color: "bg-green-100",
+    },
+    {
+      name: "Git",
+      icon: <FaGitAlt className="w-8 h-8 mb-2 text-red-500" />,
+      color: "bg-red-100",
+    },
+  ];
+
   return (
-    <section
-      id="about"
-      className="relative bg-white py-20 overflow-hidden text-gray-800"
-    >
-      {/* Subtle Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-purple-50 opacity-90 z-0"></div>
-      {/* Parallax Background Elements */}
-      <motion.div
-        className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-r from-blue-300 to-purple-300 opacity-30 blur-3xl rounded-full"
-        animate={{ x: [0, 20, -20], y: [0, 20, -20] }}
-        transition={{ repeat: Infinity, duration: 6 }}
-      ></motion.div>
-      <motion.div
-        className="absolute bottom-0 right-0 w-56 h-56 bg-gradient-to-r from-pink-300 to-purple-300 opacity-30 blur-3xl rounded-full"
-        animate={{ x: [0, -20, 20], y: [0, -20, 20] }}
-        transition={{ repeat: Infinity, duration: 8 }}
-      ></motion.div>
+    <section className="relative bg-gradient-to-b from-gray-50 to-white py-20">
+      {/* Background Elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute w-1/2 h-1/2 bg-gradient-to-r from-blue-200 to-purple-200 blur-3xl rounded-full top-16 left-10"></div>
+        <div className="absolute w-1/3 h-1/3 bg-gradient-to-r from-yellow-200 to-green-200 blur-3xl rounded-full bottom-20 right-10"></div>
+      </div>
 
-      <motion.div
-        className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        {/* Title */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        {/* Heading */}
         <motion.h2
-          className="text-4xl md:text-5xl font-extrabold text-center mb-8 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 1 }}
+          className="text-4xl sm:text-5xl font-extrabold mb-8 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
-          Who We Are
+          About BEEHOOP
         </motion.h2>
-        {/* Decorative underline */}
-        <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto mb-8"></div>
 
-        <div className="flex flex-col md:flex-row items-center gap-16">
-          {/* Description */}
-          <motion.div
-            className="md:w-1/2 space-y-6"
-            initial={{ x: -50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-lg leading-relaxed text-gray-700">
-              <span className="font-bold text-blue-400">
-                We are a team of passionate student freelancers
-              </span>{" "}
-              who bring your ideas to life with precision and creativity. From
-              crafting beautiful landing pages to developing robust full-stack
-              applications, we specialize in delivering modern, responsive, and
-              functional websites tailored to your needs.
-            </p>
-            <p className="text-lg leading-relaxed text-gray-700">
-              With expertise in cutting-edge front-end and back-end
-              technologies, we{" "}
-              <span className="text-purple-400 font-bold">
-                transform your vision into reality
-              </span>
-              . Let us help you take your digital presence to the next level.
-            </p>
-          </motion.div>
+        <motion.p
+          className="text-lg sm:text-xl text-gray-600 mb-12 max-w-3xl mx-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+        >
+          BEEHOOP is a strategy, financial, and branding advisory firm
+          delivering exceptional outcomes in strategy development, branding, and
+          transformation.
+        </motion.p>
 
-          {/* Skills/Icons */}
-          <motion.div
-            className="md:w-1/2 grid grid-cols-2 sm:grid-cols-3 gap-10 text-center"
-            initial={{ x: 50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-          >
-            {/* Skill Icons */}
-            {[
-              {
-                name: "HTML",
-                icon: "devicon-html5-plain",
-                color: "text-orange-500",
-              },
-              {
-                name: "CSS",
-                icon: "devicon-css3-plain",
-                color: "text-blue-500",
-              },
-              {
-                name: "JavaScript",
-                icon: "devicon-javascript-plain",
-                color: "text-yellow-400",
-              },
-              {
-                name: "React",
-                icon: "devicon-react-original",
-                color: "text-blue-400",
-              },
-              {
-                name: "Node.js",
-                icon: "devicon-nodejs-plain",
-                color: "text-green-500",
-              },
-              { name: "Git", icon: "devicon-git-plain", color: "text-red-500" },
-            ].map((skill, index) => (
-              <motion.div
-                key={index}
-                className="flex flex-col items-center group"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              >
-                {/* Circle background */}
-                <div className="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-r from-blue-100 to-purple-100">
-                  <i className={`${skill.icon} text-4xl ${skill.color}`}></i>
-                </div>
-                <p className="mt-4 text-lg font-semibold text-gray-800 group-hover:text-blue-500 transition-colors">
-                  {skill.name}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
+        {/* Industries Section */}
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
+          {industries.map((industry, index) => (
+            <motion.div
+              key={index}
+              className={`flex items-center px-6 py-3 bg-gradient-to-r ${industry.gradient} shadow-md rounded-full text-sm font-medium text-gray-800 hover:shadow-lg transform hover:scale-105 transition`}
+              whileHover={{ scale: 1.05 }}
+            >
+              {industry.icon}
+              {industry.name}
+            </motion.div>
+          ))}
         </div>
-      </motion.div>
+
+        {/* Services Section */}
+        <h3 className="text-2xl sm:text-3xl font-bold mb-8">What We Do</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              className={`flex flex-col items-center p-6 rounded-xl shadow-lg ${service.color} hover:shadow-2xl transform hover:scale-105 transition`}
+              whileHover={{ scale: 1.05 }}
+            >
+              {service.icon}
+              <h4 className="text-lg font-semibold">{service.name}</h4>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Skills Section */}
+        <h3 className="text-2xl sm:text-3xl font-bold mb-8">Our Skills</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8">
+          {skills.map((skill, index) => (
+            <motion.div
+              key={index}
+              className={`flex flex-col items-center p-4 rounded-full shadow-md ${skill.color} hover:shadow-lg transform hover:scale-105 transition`}
+              whileHover={{ scale: 1.1 }}
+            >
+              {skill.icon}
+              <p className="text-sm font-medium">{skill.name}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

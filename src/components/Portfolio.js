@@ -78,20 +78,20 @@ const Portfolio = () => {
       </div>
 
       <motion.div
-        className="container mx-auto px-6 text-center relative z-10"
+        className="container mx-auto px-4 sm:px-6 text-center relative z-10"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
         viewport={{ once: true }}
       >
         {/* Header Section */}
-        <h2 className="text-5xl font-extrabold text-gray-800 mb-4">
+        <h2 className="text-3xl md:text-5xl font-extrabold text-gray-800 mb-4">
           <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
             Our
           </span>{" "}
           <span className="text-gray-900">Portfolio</span>
         </h2>
-        <p className="text-xl text-gray-600 mb-12">
+        <p className="text-base md:text-xl text-gray-600 mb-12">
           Showcasing our{" "}
           <span className="font-semibold text-gray-800">
             most innovative work
@@ -99,12 +99,12 @@ const Portfolio = () => {
         </p>
 
         {/* Filter Buttons */}
-        <div className="flex justify-center space-x-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-3 rounded-full text-sm font-medium transition-transform transform ${
+              className={`px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-base font-medium transition-transform transform ${
                 activeCategory === category
                   ? "bg-blue-500 text-white scale-105 shadow-md"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
@@ -132,15 +132,15 @@ const Portfolio = () => {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-48 object-cover rounded-t-xl"
+                className="w-full h-40 md:h-48 object-cover rounded-t-xl"
               />
 
               {/* Project Details */}
-              <div className="p-6">
-                <h4 className="text-lg font-bold text-gray-800 mb-2">
+              <div className="p-4 md:p-6">
+                <h4 className="text-base md:text-lg font-bold text-gray-800 mb-2">
                   {project.title}
                 </h4>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-gray-600 mb-2">
                   {project.description}
                 </p>
                 <span className="text-blue-500 font-medium hover:underline cursor-pointer">
@@ -158,8 +158,9 @@ const Portfolio = () => {
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
-          <div className="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+          <div className="bg-white rounded-lg shadow-lg max-w-sm md:max-w-lg w-full mx-4 p-6 relative">
             <button
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
               onClick={() => setShowModal(false)}
@@ -169,9 +170,9 @@ const Portfolio = () => {
             <img
               src={selectedProject.image}
               alt={selectedProject.title}
-              className="w-full h-48 object-cover rounded-lg mb-4"
+              className="w-full h-40 md:h-48 object-cover rounded-lg mb-4"
             />
-            <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
+            <h3 className="text-xl font-bold mb-2">{selectedProject.title}</h3>
             <p className="text-gray-700 mb-4">{selectedProject.description}</p>
             <a
               href={selectedProject.link}

@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion"; // Framer Motion for animations
+import { motion } from "framer-motion";
 import { FaLaptopCode, FaMobileAlt, FaServer, FaPalette } from "react-icons/fa";
 
 const Services = () => {
@@ -27,9 +27,13 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="relative bg-white py-20 overflow-hidden">
+    <section
+      id="services"
+      className="relative bg-neutral-900 py-20 overflow-hidden"
+    >
       {/* Subtle Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-purple-50 opacity-80 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-blue-900 to-purple-900 opacity-80 z-0"></div>
+
       {/* Parallax Background Elements */}
       <motion.div
         className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-r from-blue-300 to-purple-300 opacity-30 blur-3xl rounded-full"
@@ -59,50 +63,128 @@ const Services = () => {
           What We Offer
         </motion.h2>
         {/* Subtitle */}
-        <p className="text-gray-600 text-lg md:text-xl text-center mt-4">
+        <p className="text-gray-400 text-lg md:text-xl text-center mt-4">
           High-quality, tailored services to meet your needs.
         </p>
 
         {/* Service Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
           {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className="relative bg-white rounded-xl shadow-md p-6 text-center transform hover:scale-105 transition-all hover:shadow-lg group"
-              whileHover={{
-                scale: 1.05,
-              }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.15 }}
-            >
-              <div className="flex justify-center items-center w-24 h-24 mx-auto bg-gradient-to-r from-blue-100 to-purple-100 rounded-full">
-                {service.icon}
-              </div>
-
-              {/* Title */}
-              <h3 className="text-xl font-semibold mt-4 text-gray-800">
-                {service.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-gray-600 mt-2 group-hover:text-gray-800 transition-colors">
-                {service.description}
-              </p>
-
-              {/* Learn More Button */}
-              <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none">
-                Learn More
-              </button>
-
-              {/* Decorative Gradient Border for Hover */}
-              <div className="absolute inset-0 border-2 border-transparent rounded-xl group-hover:border-gradient-to-r from-blue-400 to-purple-400 pointer-events-none transition-all"></div>
-            </motion.div>
+            <ServiceCard key={index} service={service} />
           ))}
         </div>
       </motion.div>
     </section>
+  );
+};
+
+const ServiceCard = ({ service }) => {
+  return (
+    <motion.div
+      whileHover="hover"
+      transition={{
+        duration: 1,
+        ease: "backInOut",
+      }}
+      variants={{
+        hover: {
+          scale: 1.05,
+        },
+      }}
+      className="relative h-[400px] w-full overflow-hidden rounded-xl bg-indigo-500 p-8 flex flex-col justify-between"
+    >
+      <div className="relative z-10 text-white">
+        <div className="flex justify-center items-center w-24 h-24 mx-auto bg-gradient-to-r from-blue-100 to-purple-100 rounded-full">
+          {service.icon}
+        </div>
+
+        {/* Title */}
+        <motion.span
+          initial={{ scale: 0.85 }}
+          variants={{
+            hover: {
+              scale: 1,
+            },
+          }}
+          transition={{
+            duration: 1,
+            ease: "backInOut",
+          }}
+          className="my-4 block origin-top-left font-mono text-3xl font-black leading-[1.2] text-center"
+        >
+          {service.title}
+        </motion.span>
+
+        {/* Description */}
+        <p className="text-gray-200 mt-2 text-center">{service.description}</p>
+      </div>
+
+      {/* Learn More Button */}
+      <button className="relative z-20 w-full rounded border-2 border-white bg-white py-2 text-center font-mono font-black uppercase text-neutral-800 backdrop-blur transition-colors hover:bg-white/30 hover:text-white">
+        Learn More
+      </button>
+
+      {/* Background Animation */}
+      <Background />
+    </motion.div>
+  );
+};
+
+const Background = () => {
+  return (
+    <motion.svg
+      width="320"
+      height="384"
+      viewBox="0 0 320 384"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="absolute inset-0 z-0"
+      variants={{
+        hover: {
+          scale: 1.5,
+        },
+      }}
+      transition={{
+        duration: 1,
+        ease: "backInOut",
+      }}
+    >
+      <motion.circle
+        variants={{
+          hover: {
+            scaleY: 0.5,
+            y: -25,
+          },
+        }}
+        transition={{
+          duration: 1,
+          ease: "backInOut",
+          delay: 0.2,
+        }}
+        cx="160.5"
+        cy="114.5"
+        r="101.5"
+        fill="#262626"
+      />
+      <motion.ellipse
+        variants={{
+          hover: {
+            scaleY: 2.25,
+            y: -25,
+          },
+        }}
+        transition={{
+          duration: 1,
+          ease: "backInOut",
+          delay: 0.2,
+        }}
+        cx="160.5"
+        cy="265.5"
+        rx="101.5"
+        ry="43.5"
+        fill="#262626"
+      />
+    </motion.svg>
   );
 };
 

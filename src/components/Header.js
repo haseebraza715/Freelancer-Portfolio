@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import coverI from "../images/Logo_With_Name.png";
 
 const Header = () => {
   const menuItems = [
@@ -16,16 +17,23 @@ const Header = () => {
     { label: "Contact", link: "#contact" },
   ];
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null); // For mobile dropdowns
+
   return (
-    <header className="fixed top-0 z-50 w-full bg-[#121212] backdrop-blur-md shadow-lg">
+    <header className="fixed top-0 z-50 w-full bg-[#121212]/90 backdrop-blur-md shadow-lg">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
-        <div className="text-xl font-bold tracking-wider text-[#4F8EF7]">
-          Freelancer Portfolio
+        <div className="flex items-center">
+          <img
+            src={coverI}
+            alt="Logo"
+            className="h-10 w-auto" // Adjust height and width as needed
+          />
         </div>
 
-        {/* Navigation Links */}
-        <nav className="hidden lg:flex space-x-8">
+        {/* Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center space-x-8">
           {menuItems.map((item, index) =>
             item.FlyoutContent ? (
               <FlyoutLink
@@ -42,14 +50,69 @@ const Header = () => {
                 className="relative text-white text-sm font-semibold uppercase tracking-wide hover:text-[#4F8EF7] transition duration-300"
               >
                 {item.label}
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#4F8EF7] to-[#8A4EFF] origin-left scale-x-0 hover:scale-x-100 transition-transform duration-300" />
               </a>
             )
           )}
         </nav>
 
-        {/* Mobile Menu Placeholder */}
-        <button className="lg:hidden text-xl text-white">☰</button>
+        {/* Mobile Menu Button */}
+        <button
+          className="lg:hidden text-xl text-white hover:text-[#4F8EF7] transition"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          ☰
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-[#1D1D1D] text-white shadow-lg w-full"
+          >
+            <ul className="flex flex-col px-6 py-4 space-y-4">
+              {menuItems.map((item, index) => (
+                <li key={index}>
+                  {item.FlyoutContent ? (
+                    <button
+                      className="w-full text-left text-sm font-semibold uppercase tracking-wide hover:text-[#4F8EF7] transition"
+                      onClick={() =>
+                        setOpenDropdown(openDropdown === index ? null : index)
+                      }
+                    >
+                      {item.label}
+                      <span className="float-right">
+                        {openDropdown === index ? "▲" : "▼"}
+                      </span>
+                    </button>
+                  ) : (
+                    <a
+                      href={item.link}
+                      className="block text-sm font-semibold uppercase tracking-wide hover:text-[#4F8EF7] transition"
+                    >
+                      {item.label}
+                    </a>
+                  )}
+                  {openDropdown === index && item.FlyoutContent && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="pl-4 pt-2"
+                    >
+                      <item.FlyoutContent />
+                    </motion.div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
@@ -82,10 +145,10 @@ const FlyoutLink = ({ children, href, FlyoutContent }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 15 }}
             className="absolute left-1/2 top-10 bg-[#1D1D1D] text-white shadow-lg rounded-xl"
-            style={{ translateX: "-50%" }}
+            style={{ translateX: "-50%", width: "200px" }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <div className="relative w-64 p-4 rounded-xl">
+            <div className="relative w-full p-4 rounded-xl">
               <FlyoutContent />
             </div>
           </motion.div>
