@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import coverI from "../images/Logo_With_Name.png";
+import coverI from "../images/Logo.png";
 
 const Header = () => {
   const menuItems = [

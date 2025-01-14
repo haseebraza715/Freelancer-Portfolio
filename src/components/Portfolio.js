@@ -120,7 +120,7 @@ const Portfolio = () => {
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="relative bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all"
+              className="relative bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all cursor-pointer"
               whileHover={{ y: -10 }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
