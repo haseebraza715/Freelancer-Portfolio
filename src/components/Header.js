@@ -1,12 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  FiArrowRight,
-  FiChevronDown,
-  FiCode,
-  FiBarChart2,
-  FiHome,
-} from "react-icons/fi";
 
 const Header = () => {
   const menuItems = [
@@ -14,66 +7,39 @@ const Header = () => {
     { label: "About", link: "#about" },
     {
       label: "Services",
-      Component: ServicesContent,
+      FlyoutContent: ServicesContent,
     },
     {
       label: "Portfolio",
-      Component: PortfolioContent,
+      FlyoutContent: PortfolioContent,
     },
     { label: "Contact", link: "#contact" },
   ];
 
-  const [selectedTab, setSelectedTab] = useState(null);
-  const [dropdownPosition, setDropdownPosition] = useState({
-    left: "auto",
-    right: "auto",
-  });
-
-  const handleTabSelect = (tabIndex, event) => {
-    if (!event) return;
-    const rect = event.currentTarget.getBoundingClientRect();
-    const screenWidth = window.innerWidth;
-
-    // Adjust dropdown positioning to avoid overflow
-    const dropdownLeft = rect.left;
-    const dropdownRight = screenWidth - rect.right;
-
-    if (dropdownRight < 300) {
-      setDropdownPosition({ left: "auto", right: 0 });
-    } else {
-      setDropdownPosition({ left: dropdownLeft, right: "auto" });
-    }
-
-    setSelectedTab(tabIndex);
-  };
-
   return (
-    <header className="fixed top-0 z-50 w-full bg-[#121212] shadow-lg">
+    <header className="fixed top-0 z-50 w-full bg-[#121212] backdrop-blur-md shadow-lg">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
-        <div className="text-xl font-bold tracking-wide text-[#4F8EF7]">
+        <div className="text-xl font-bold tracking-wider text-[#4F8EF7]">
           Freelancer Portfolio
         </div>
 
-        {/* Navigation */}
-        <nav className="hidden lg:flex items-center space-x-6">
+        {/* Navigation Links */}
+        <nav className="hidden lg:flex space-x-8">
           {menuItems.map((item, index) =>
-            item.Component ? (
-              <DropdownTab
+            item.FlyoutContent ? (
+              <FlyoutLink
                 key={index}
-                tabIndex={index}
-                label={item.label}
-                selectedTab={selectedTab}
-                handleTabSelect={handleTabSelect}
-                dropdownPosition={dropdownPosition}
+                href={item.link}
+                FlyoutContent={item.FlyoutContent}
               >
-                <item.Component />
-              </DropdownTab>
+                {item.label}
+              </FlyoutLink>
             ) : (
               <a
                 key={index}
                 href={item.link}
-                className="text-white text-sm font-semibold uppercase hover:text-[#4F8EF7] transition"
+                className="relative text-white text-sm font-semibold uppercase tracking-wide hover:text-[#4F8EF7] transition duration-300"
               >
                 {item.label}
               </a>
@@ -81,85 +47,47 @@ const Header = () => {
           )}
         </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-xl text-white"
-          onClick={() =>
-            setSelectedTab(selectedTab === "mobile" ? null : "mobile")
-          }
-        >
-          ☰
-        </button>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {selectedTab === "mobile" && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-[#1D1D1D] text-white shadow-lg w-full absolute top-full left-0"
-            >
-              <ul className="flex flex-col px-6 py-4 space-y-4">
-                {menuItems.map((item, index) => (
-                  <li key={index}>
-                    <a
-                      href={item.link}
-                      className="block text-sm font-semibold uppercase tracking-wide hover:text-[#4F8EF7] transition"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile Menu Placeholder */}
+        <button className="lg:hidden text-xl text-white">☰</button>
       </div>
     </header>
   );
 };
 
-const DropdownTab = ({
-  label,
-  tabIndex,
-  selectedTab,
-  handleTabSelect,
-  children,
-  dropdownPosition,
-}) => {
-  const isSelected = selectedTab === tabIndex;
+const FlyoutLink = ({ children, href, FlyoutContent }) => {
+  const [open, setOpen] = useState(false);
 
   return (
     <div
-      onMouseEnter={(e) => handleTabSelect(tabIndex, e)}
-      onMouseLeave={() => handleTabSelect(null)}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
       className="relative"
     >
-      <button
-        className={`flex items-center gap-1 text-sm font-semibold uppercase tracking-wide ${
-          isSelected ? "text-[#4F8EF7]" : "text-white"
-        } transition`}
+      <a
+        href={href || "#"}
+        className="relative text-sm font-semibold uppercase tracking-wide text-white hover:text-[#8A4EFF] transition duration-300"
       >
-        <span>{label}</span>
-        <FiChevronDown
-          className={`${isSelected ? "rotate-180" : ""} transition-transform`}
+        {children}
+        <span
+          style={{
+            transform: open ? "scaleX(1)" : "scaleX(0)",
+          }}
+          className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#4F8EF7] to-[#8A4EFF] origin-left scale-x-0 transition-transform duration-300"
         />
-      </button>
+      </a>
       <AnimatePresence>
-        {isSelected && (
+        {open && (
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            className="absolute bg-[#1A1A1A] rounded-lg shadow-lg p-6"
-            style={{
-              ...dropdownPosition,
-              minWidth: "300px",
-              maxWidth: "600px",
-            }}
+            exit={{ opacity: 0, y: 15 }}
+            className="absolute left-1/2 top-10 bg-[#1D1D1D] text-white shadow-lg rounded-xl"
+            style={{ translateX: "-50%" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            {children}
+            <div className="relative w-64 p-4 rounded-xl">
+              <FlyoutContent />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -167,55 +95,76 @@ const DropdownTab = ({
   );
 };
 
-const ServicesContent = () => {
-  const categories = [
-    {
-      heading: "Web Development",
-      projects: [
-        { title: "E-commerce Website", icon: <FiCode />, link: "#ecommerce" },
-        { title: "Portfolio Website", icon: <FiCode />, link: "#portfolio" },
-        { title: "Corporate Website", icon: <FiCode />, link: "#corporate" },
-      ],
-    },
-    {
-      heading: "Mobile Development",
-      projects: [
-        {
-          title: "Food Delivery App",
-          icon: <FiCode />,
-          link: "#food-delivery",
-        },
-        { title: "Health Tracker", icon: <FiCode />, link: "#health-tracker" },
-      ],
-    },
-  ];
+const ServicesContent = () => (
+  <div>
+    <h3 className="mb-2 font-semibold text-[#4F8EF7]">Our Services</h3>
+    <ul className="space-y-2">
+      <li>
+        <a
+          href="#web-dev"
+          className="block px-3 py-2 text-sm text-[#A0A0A0] hover:bg-gradient-to-r hover:from-[#4F8EF7] hover:to-[#8A4EFF] hover:text-white rounded-md transition-all duration-300"
+        >
+          Web Development
+        </a>
+      </li>
+      <li>
+        <a
+          href="#mobile-dev"
+          className="block px-3 py-2 text-sm text-[#A0A0A0] hover:bg-gradient-to-r hover:from-[#4F8EF7] hover:to-[#8A4EFF] hover:text-white rounded-md transition-all duration-300"
+        >
+          Mobile App Development
+        </a>
+      </li>
+      <li>
+        <a
+          href="#ui-ux"
+          className="block px-3 py-2 text-sm text-[#A0A0A0] hover:bg-gradient-to-r hover:from-[#4F8EF7] hover:to-[#8A4EFF] hover:text-white rounded-md transition-all duration-300"
+        >
+          UI/UX Design
+        </a>
+      </li>
+      <li>
+        <a
+          href="#seo"
+          className="block px-3 py-2 text-sm text-[#A0A0A0] hover:bg-gradient-to-r hover:from-[#4F8EF7] hover:to-[#8A4EFF] hover:text-white rounded-md transition-all duration-300"
+        >
+          SEO Optimization
+        </a>
+      </li>
+    </ul>
+  </div>
+);
 
-  return (
-    <div className="grid grid-cols-2 gap-4">
-      {categories.map((category, idx) => (
-        <div key={idx}>
-          <h4 className="mb-2 text-sm font-medium text-gray-400">
-            {category.heading}
-          </h4>
-          <ul className="space-y-2">
-            {category.projects.map((project, index) => (
-              <li key={index}>
-                <a
-                  href={project.link}
-                  className="flex items-center gap-2 text-sm text-gray-200 hover:text-blue-400 transition"
-                >
-                  {project.icon}
-                  {project.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-const PortfolioContent = ServicesContent;
+const PortfolioContent = () => (
+  <div>
+    <h3 className="mb-2 font-semibold text-[#4F8EF7]">Our Portfolio</h3>
+    <ul className="space-y-2">
+      <li>
+        <a
+          href="#websites"
+          className="block px-3 py-2 text-sm text-[#A0A0A0] hover:bg-gradient-to-r hover:from-[#4F8EF7] hover:to-[#8A4EFF] hover:text-white rounded-md transition-all duration-300"
+        >
+          Websites
+        </a>
+      </li>
+      <li>
+        <a
+          href="#mobile-apps"
+          className="block px-3 py-2 text-sm text-[#A0A0A0] hover:bg-gradient-to-r hover:from-[#4F8EF7] hover:to-[#8A4EFF] hover:text-white rounded-md transition-all duration-300"
+        >
+          Mobile Apps
+        </a>
+      </li>
+      <li>
+        <a
+          href="#case-studies"
+          className="block px-3 py-2 text-sm text-[#A0A0A0] hover:bg-gradient-to-r hover:from-[#4F8EF7] hover:to-[#8A4EFF] hover:text-white rounded-md transition-all duration-300"
+        >
+          Case Studies
+        </a>
+      </li>
+    </ul>
+  </div>
+);
 
 export default Header;
