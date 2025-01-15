@@ -1,142 +1,143 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaLaptopCode, FaMobileAlt, FaServer, FaPalette } from "react-icons/fa";
+import {
+  FaChess,
+  FaChartLine,
+  FaPaintBrush,
+  FaLightbulb,
+  FaHandshake,
+  FaUsers,
+  FaBuilding,
+} from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const Services = () => {
   const services = [
     {
-      icon: (
-        <FaLaptopCode
-          className="text-5xl text-indigo-600 mb-4"
-          aria-hidden="true"
-        />
-      ),
-      title: "Web Development",
-      description: "Custom websites tailored to your business needs.",
+      icon: <FaChess className="text-4xl text-indigo-600" />,
+      title: "Strategy Development",
+      description:
+        "Crafting clear strategic roadmaps to guide your business towards long-term success.",
     },
     {
-      icon: (
-        <FaMobileAlt
-          className="text-5xl text-teal-600 mb-4"
-          aria-hidden="true"
-        />
-      ),
-      title: "Responsive Design",
-      description: "Mobile-first, fully responsive designs for all devices.",
+      icon: <FaChartLine className="text-4xl text-teal-600" />,
+      title: "Financial Advisory",
+      description:
+        "Rigorous analysis to enhance financial performance and shareholder returns.",
     },
     {
-      icon: (
-        <FaServer
-          className="text-5xl text-yellow-600 mb-4"
-          aria-hidden="true"
-        />
-      ),
-      title: "Backend Solutions",
-      description: "Robust and scalable backend services using Node.js.",
+      icon: <FaPaintBrush className="text-4xl text-yellow-600" />,
+      title: "Branding & Positioning",
+      description:
+        "Elevating brand identity to resonate with your target audience.",
     },
     {
-      icon: (
-        <FaPalette
-          className="text-5xl text-purple-600 mb-4"
-          aria-hidden="true"
-        />
-      ),
-      title: "UI/UX Design",
-      description: "Intuitive and engaging designs to enhance user experience.",
+      icon: <FaLightbulb className="text-4xl text-purple-600" />,
+      title: "Transformation Projects",
+      description:
+        "Executing transformative initiatives to drive operational excellence.",
+    },
+    {
+      icon: <FaHandshake className="text-4xl text-blue-600" />,
+      title: "Business Development",
+      description:
+        "Accelerating growth through strategic partnerships and market expansion.",
+    },
+    {
+      icon: <FaUsers className="text-4xl text-green-600" />,
+      title: "Organizational Strengthening",
+      description:
+        "Building resilient foundations for sustainable future growth.",
+    },
+    {
+      icon: <FaBuilding className="text-4xl text-red-600" />,
+      title: "Value Creation",
+      description:
+        "Enhancing performance and creating value across all business fronts.",
+    },
+  ];
+
+  const testimonials = [
+    {
+      quote:
+        "BEEHOOP helped us transform our business strategy and achieve remarkable growth.",
+      author: "John Doe, CEO of Example Corp",
+    },
+    {
+      quote:
+        "Their branding expertise has significantly elevated our market presence.",
+      author: "Jane Smith, CMO of Sample Inc",
     },
   ];
 
   return (
-    <section
-      id="services"
-      className="relative bg-white py-20 overflow-hidden"
-      aria-labelledby="services-heading"
-    >
-      <motion.div
-        className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        {/* Section Title */}
+    <section id="services" className="bg-white py-16">
+      <Helmet>
+        <title>Our Services - BEEHOOP</title>
+        <meta
+          name="description"
+          content="Discover our comprehensive services including strategy development, financial advisory, branding, and more."
+        />
+      </Helmet>
+      <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <motion.h2
-          id="services-heading"
-          className="text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          className="text-4xl font-bold text-center mb-6 text-gray-800"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          What We Offer
+          Our Services
         </motion.h2>
-        {/* Subtitle */}
-        <p className="text-gray-600 text-lg md:text-xl text-center mt-4">
-          High-quality, tailored services to meet your needs.
-        </p>
-
-        {/* Service Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        <motion.p
+          className="text-lg text-gray-600 text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Combining advanced planning, rigorous analysis, and proven execution
+          expertise to help businesses achieve meaningful outcomes.
+        </motion.p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <ServiceCard key={index} service={service} />
+            <motion.div
+              key={index}
+              className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+                className="flex justify-center mb-6"
+              >
+                {service.icon}
+              </motion.div>
+              <h3 className="text-2xl font-bold mb-4 text-gray-800">
+                {service.title}
+              </h3>
+              <p className="text-gray-600 text-lg">{service.description}</p>
+            </motion.div>
           ))}
         </div>
-      </motion.div>
-    </section>
-  );
-};
-
-const ServiceCard = ({ service }) => {
-  return (
-    <motion.div
-      whileHover="hover"
-      transition={{
-        duration: 1,
-        ease: "backInOut",
-      }}
-      variants={{
-        hover: {
-          scale: 1.05,
-        },
-      }}
-      className="relative h-[400px] w-full overflow-hidden rounded-xl bg-white shadow-lg p-8 flex flex-col justify-between border border-gray-200"
-      aria-labelledby={`service-${service.title
-        .toLowerCase()
-        .replace(/\s+/g, "-")}-title`}
-    >
-      <div className="relative z-10 text-gray-800">
-        <div className="flex justify-center items-center w-24 h-24 mx-auto bg-gradient-to-r from-blue-50 to-purple-50 rounded-full">
-          {service.icon}
-        </div>
-
-        {/* Title */}
-        <motion.span
-          initial={{ scale: 0.85 }}
-          variants={{
-            hover: {
-              scale: 1,
-            },
-          }}
-          transition={{
-            duration: 1,
-            ease: "backInOut",
-          }}
-          className="my-4 block origin-top-left font-mono text-3xl font-black leading-[1.2] text-center"
-          id={`service-${service.title
-            .toLowerCase()
-            .replace(/\s+/g, "-")}-title`}
+        <motion.div
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
         >
-          {service.title}
-        </motion.span>
-
-        {/* Description */}
-        <p className="text-gray-600 mt-2 text-center">{service.description}</p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-indigo-600 text-white px-10 py-4 rounded-lg hover:bg-indigo-700 transition-colors duration-300 font-bold text-lg"
+          >
+            View all Services
+          </motion.button>
+        </motion.div>
       </div>
-
-      {/* Learn More Button */}
-      <button className="relative z-20 w-full rounded border-2 border-indigo-600 bg-indigo-600 py-2 text-center font-mono font-black uppercase text-white backdrop-blur transition-colors hover:bg-indigo-700 hover:border-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-white">
-        Learn More
-      </button>
-    </motion.div>
+    </section>
   );
 };
 
