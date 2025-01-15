@@ -25,37 +25,37 @@ const AboutUs = () => {
   const industries = [
     {
       name: "Leading Conglomerates & Corporations",
-      icon: <FaBuilding className="w-5 h-5 mr-2" />,
+      icon: <FaBuilding className="w-5 h-5 mr-2" aria-hidden="true" />,
       gradient: "from-blue-100 to-purple-100",
     },
     {
       name: "Multinational Corporations",
-      icon: <FaGlobe className="w-5 h-5 mr-2" />,
+      icon: <FaGlobe className="w-5 h-5 mr-2" aria-hidden="true" />,
       gradient: "from-green-100 to-blue-100",
     },
     {
       name: "Private Equity Firms",
-      icon: <FaHandHoldingUsd className="w-5 h-5 mr-2" />,
+      icon: <FaHandHoldingUsd className="w-5 h-5 mr-2" aria-hidden="true" />,
       gradient: "from-yellow-100 to-orange-100",
     },
     {
       name: "Mid-size Industrial Companies",
-      icon: <FaIndustry className="w-5 h-5 mr-2" />,
+      icon: <FaIndustry className="w-5 h-5 mr-2" aria-hidden="true" />,
       gradient: "from-purple-100 to-pink-100",
     },
     {
       name: "Start-ups & Corporate Venture Capital Clients",
-      icon: <FaRocket className="w-5 h-5 mr-2" />,
+      icon: <FaRocket className="w-5 h-5 mr-2" aria-hidden="true" />,
       gradient: "from-indigo-100 to-blue-100",
     },
     {
       name: "Government Institutions",
-      icon: <FaLandmark className="w-5 h-5 mr-2" />,
+      icon: <FaLandmark className="w-5 h-5 mr-2" aria-hidden="true" />,
       gradient: "from-red-100 to-orange-100",
     },
     {
       name: "Non-profit Organizations",
-      icon: <FaHandsHelping className="w-5 h-5 mr-2" />,
+      icon: <FaHandsHelping className="w-5 h-5 mr-2" aria-hidden="true" />,
       gradient: "from-green-100 to-teal-100",
     },
   ];
@@ -63,27 +63,49 @@ const AboutUs = () => {
   const services = [
     {
       name: "Strategy Development",
-      icon: <FaChartLine className="w-12 h-12 mb-4 text-blue-500" />,
+      icon: (
+        <FaChartLine
+          className="w-12 h-12 mb-4 text-blue-500"
+          aria-hidden="true"
+        />
+      ),
       color: "bg-blue-100",
     },
     {
       name: "Branding & Positioning",
-      icon: <FaPalette className="w-12 h-12 mb-4 text-purple-500" />,
+      icon: (
+        <FaPalette
+          className="w-12 h-12 mb-4 text-purple-500"
+          aria-hidden="true"
+        />
+      ),
       color: "bg-purple-100",
     },
     {
       name: "Financial Transformation",
-      icon: <FaCoins className="w-12 h-12 mb-4 text-yellow-500" />,
+      icon: (
+        <FaCoins
+          className="w-12 h-12 mb-4 text-yellow-500"
+          aria-hidden="true"
+        />
+      ),
       color: "bg-yellow-100",
     },
     {
       name: "Value Creation",
-      icon: <FaLightbulb className="w-12 h-12 mb-4 text-green-500" />,
+      icon: (
+        <FaLightbulb
+          className="w-12 h-12 mb-4 text-green-500"
+          aria-hidden="true"
+        />
+      ),
       color: "bg-green-100",
     },
     {
       name: "Full Stack Development",
-      icon: <FaCode className="w-12 h-12 mb-4 text-indigo-500" />,
+      icon: (
+        <FaCode className="w-12 h-12 mb-4 text-indigo-500" aria-hidden="true" />
+      ),
       color: "bg-indigo-100",
     },
   ];
@@ -91,32 +113,44 @@ const AboutUs = () => {
   const skills = [
     {
       name: "HTML",
-      icon: <FaHtml5 className="w-8 h-8 mb-2 text-orange-500" />,
+      icon: (
+        <FaHtml5 className="w-8 h-8 mb-2 text-orange-500" aria-hidden="true" />
+      ),
       color: "bg-orange-100",
     },
     {
       name: "CSS",
-      icon: <FaCss3 className="w-8 h-8 mb-2 text-blue-500" />,
+      icon: (
+        <FaCss3 className="w-8 h-8 mb-2 text-blue-500" aria-hidden="true" />
+      ),
       color: "bg-blue-100",
     },
     {
       name: "JavaScript",
-      icon: <FaJs className="w-8 h-8 mb-2 text-yellow-500" />,
+      icon: (
+        <FaJs className="w-8 h-8 mb-2 text-yellow-500" aria-hidden="true" />
+      ),
       color: "bg-yellow-100",
     },
     {
       name: "React",
-      icon: <FaReact className="w-8 h-8 mb-2 text-blue-500" />,
+      icon: (
+        <FaReact className="w-8 h-8 mb-2 text-blue-500" aria-hidden="true" />
+      ),
       color: "bg-blue-100",
     },
     {
       name: "Node.js",
-      icon: <FaNodeJs className="w-8 h-8 mb-2 text-green-500" />,
+      icon: (
+        <FaNodeJs className="w-8 h-8 mb-2 text-green-500" aria-hidden="true" />
+      ),
       color: "bg-green-100",
     },
     {
       name: "Git",
-      icon: <FaGitAlt className="w-8 h-8 mb-2 text-red-500" />,
+      icon: (
+        <FaGitAlt className="w-8 h-8 mb-2 text-red-500" aria-hidden="true" />
+      ),
       color: "bg-red-100",
     },
   ];

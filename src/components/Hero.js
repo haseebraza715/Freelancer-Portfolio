@@ -4,29 +4,11 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section
+    <header
       id="home"
-      className="relative text-white h-screen flex items-center justify-center text-center overflow-hidden"
+      className="relative bg-black text-white h-screen flex items-center justify-center text-center overflow-hidden"
+      aria-labelledby="hero-heading"
     >
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
-
-      {/* Subtle Glow Elements */}
-      <div className="absolute inset-0 z-0">
-        <motion.div
-          className="absolute top-10 left-20 w-20 h-20 bg-gradient-to-r from-[#4A90E2] to-[#50E3C2] rounded-full opacity-30 blur-3xl"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.4, scale: 1.5 }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-16 w-16 h-16 bg-gradient-to-r from-[#50E3C2] to-[#4A90E2] rounded-full opacity-30 blur-2xl"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.4, scale: 1.3 }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-
       {/* Hero Content */}
       <motion.div
         className="relative z-10 container mx-auto px-6"
@@ -46,26 +28,27 @@ const Hero = () => {
 
         {/* Main Heading */}
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#4A90E2] via-[#50E3C2] to-[#4A90E2]"
+          id="hero-heading"
+          className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight tracking-tight"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
           Creating Timeless <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#50E3C2] to-[#4A90E2]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-teal-400">
             Digital Experiences
           </span>
         </motion.h1>
 
         {/* Subheading */}
         <motion.p
-          className="text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-8 text-gray-400"
+          className="text-lg max-w-2xl mx-auto mb-8 text-gray-400"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
           Empowering{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A90E2] to-[#50E3C2] font-semibold">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-teal-400 font-semibold">
             <Typewriter
               words={["Ideas", "Dreams", "Visions"]}
               loop
@@ -82,33 +65,44 @@ const Hero = () => {
         {/* Call-to-Action Buttons */}
         <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
           <motion.button
-            className="px-6 py-3 text-sm rounded-full font-bold text-white bg-gradient-to-r from-[#4A90E2] to-[#50E3C2] hover:from-[#50E3C2] hover:to-[#4A90E2] transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="px-8 py-4 text-sm rounded-full font-bold text-white bg-gradient-to-r from-purple-600 to-teal-500 hover:from-teal-500 hover:to-purple-600 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400"
             whileHover={{
               scale: 1.1,
-              boxShadow: "0px 0px 15px rgba(121, 137, 227, 0.6)",
+              boxShadow: "0px 0px 15px rgba(139, 92, 246, 0.6)",
             }}
             whileTap={{ scale: 0.95 }}
           >
             Get Started
           </motion.button>
           <motion.button
-            className="px-6 py-3 text-sm rounded-full font-bold text-white border-2 border-gray-600 hover:border-[#4A90E2] transition-all duration-300 hover:bg-[#4A90E2] hover:text-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="px-8 py-4 text-sm rounded-full font-bold text-white border-2 border-purple-600 hover:border-teal-500 transition-all duration-300 hover:bg-purple-600 hover:text-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400"
             whileHover={{
               scale: 1.1,
-              backgroundColor: "#4A90E2",
+              backgroundColor: "#8A2BE2",
               color: "#ffffff",
             }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              document
-                .getElementById("about")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
           >
             Learn More
           </motion.button>
         </div>
       </motion.div>
+
+      {/* Subtle Background Elements */}
+      <div className="absolute inset-0 z-0">
+        <motion.div
+          className="absolute top-10 left-20 w-20 h-20 bg-gradient-to-r from-purple-800 to-teal-800 rounded-full opacity-30 blur-3xl"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 0.4, scale: 1.5 }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-16 w-16 h-16 bg-gradient-to-r from-teal-800 to-purple-800 rounded-full opacity-30 blur-2xl"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 0.4, scale: 1.3 }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
 
       {/* Wave Divider */}
       <div className="absolute bottom-0 w-full">
@@ -116,6 +110,7 @@ const Hero = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
           className="w-full h-12"
+          aria-hidden="true"
         >
           <path
             fill="url(#gradient)"
@@ -136,7 +131,7 @@ const Hero = () => {
           </defs>
         </svg>
       </div>
-    </section>
+    </header>
   );
 };
 
