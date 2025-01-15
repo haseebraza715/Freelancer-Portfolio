@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/Freelancer-Portfolio/static/css/main.8680b635.css",
-    "main.js": "/Freelancer-Portfolio/static/js/main.7fff3941.js",
+    "main.css": "/Freelancer-Portfolio/static/css/main.9e797d71.css",
+    "main.js": "/Freelancer-Portfolio/static/js/main.b653c880.js",
     "static/media/devicon.svg?iehcku": "/Freelancer-Portfolio/static/media/devicon.de33ff67547800466a48.svg",
     "static/media/devicon.woff?iehcku": "/Freelancer-Portfolio/static/media/devicon.25bdb9cbf8e5f9b4dde9.woff",
     "static/media/devicon.ttf?iehcku": "/Freelancer-Portfolio/static/media/devicon.161b6f3376d6ce5c517d.ttf",
     "static/media/cover.jpg": "/Freelancer-Portfolio/static/media/cover.a52a23cb094ad9befd83.jpg",
     "static/media/Logo.png": "/Freelancer-Portfolio/static/media/Logo.0fbe7e4bc71fbefdabeb.png",
     "index.html": "/Freelancer-Portfolio/index.html",
-    "main.8680b635.css.map": "/Freelancer-Portfolio/static/css/main.8680b635.css.map",
-    "main.7fff3941.js.map": "/Freelancer-Portfolio/static/js/main.7fff3941.js.map"
+    "main.9e797d71.css.map": "/Freelancer-Portfolio/static/css/main.9e797d71.css.map",
+    "main.b653c880.js.map": "/Freelancer-Portfolio/static/js/main.b653c880.js.map"
   },
   "entrypoints": [
-    "static/css/main.8680b635.css",
-    "static/js/main.7fff3941.js"
+    "static/css/main.9e797d71.css",
+    "static/js/main.b653c880.js"
   ]
 }
