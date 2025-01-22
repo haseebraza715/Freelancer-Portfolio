@@ -9,10 +9,13 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-slate-800 text-gray-800 dark:text-white py-12 relative overflow-hidden">
+    <footer
+      className="bg-[#1E293B] text-[#F9FAFB] py-12 relative overflow-hidden"
+      style={{ backgroundColor: "#1E293B", color: "#F9FAFB" }}
+    >
       {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-0 w-40 h-40 bg-blue-300 dark:bg-blue-500 opacity-30 blur-2xl rounded-full z-0"></div>
-      <div className="absolute bottom-0 right-0 w-56 h-56 bg-purple-300 dark:bg-purple-500 opacity-30 blur-2xl rounded-full z-0"></div>
+      <div className="absolute top-0 left-0 w-40 h-40 bg-blue-300 opacity-20 blur-2xl rounded-full z-0"></div>
+      <div className="absolute bottom-0 right-0 w-56 h-56 bg-purple-300 opacity-20 blur-2xl rounded-full z-0"></div>
 
       <motion.div
         className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10"
@@ -30,10 +33,10 @@ const Footer = () => {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            <h4 className="text-lg font-semibold mb-4 text-blue-600 dark:text-blue-400">
+            <h4 className="text-lg font-semibold mb-4 text-[#3B82F6]">
               About Us
             </h4>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            <p className="text-[#F9FAFB] text-opacity-80 text-sm leading-relaxed">
               We are a team of passionate developers dedicated to delivering
               exceptional websites tailored to your needs. Let us bring your
               vision to life with creativity and precision.
@@ -47,15 +50,15 @@ const Footer = () => {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <h4 className="text-lg font-semibold mb-4 text-blue-600 dark:text-blue-400">
+            <h4 className="text-lg font-semibold mb-4 text-[#3B82F6]">
               Quick Links
             </h4>
-            <ul className="text-gray-600 dark:text-gray-400 text-sm space-y-2">
+            <ul className="text-[#F9FAFB] text-opacity-80 text-sm space-y-2">
               {["About Us", "Services", "Portfolio", "Contact"].map((link) => (
                 <li key={link}>
                   <a
                     href={`#${link.toLowerCase().replace(" ", "")}`}
-                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="hover:text-[#3B82F6] transition-colors"
                     aria-label={`Navigate to ${link}`}
                   >
                     {link}
@@ -72,16 +75,16 @@ const Footer = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            <h4 className="text-lg font-semibold mb-4 text-blue-600 dark:text-blue-400">
+            <h4 className="text-lg font-semibold mb-4 text-[#3B82F6]">
               Contact Info
             </h4>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            <p className="text-[#F9FAFB] text-opacity-80 text-sm leading-relaxed">
               123 Freelancer St., Web City, USA
             </p>
-            <p className="text-gray-600 dark:text-gray-400 text-sm mt-4">
+            <p className="text-[#F9FAFB] text-opacity-80 text-sm mt-4">
               contact@example.com
             </p>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
+            <p className="text-[#F9FAFB] text-opacity-80 text-sm">
               +1 (555) 123-4567
             </p>
 
@@ -96,7 +99,7 @@ const Footer = () => {
                 <motion.a
                   key={index}
                   href={social.link}
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="text-[#F9FAFB] text-opacity-80 hover:text-[#3B82F6] transition-colors"
                   whileHover={{
                     scale: 1.2,
                     rotate: 15,
@@ -112,7 +115,7 @@ const Footer = () => {
 
         {/* Divider */}
         <motion.div
-          className="border-t border-gray-300 dark:border-gray-700 my-6"
+          className="border-t border-gray-700 my-6"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 1 }}
@@ -127,7 +130,7 @@ const Footer = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
+          <p className="text-[#F9FAFB] text-opacity-80 text-sm">
             &copy; {new Date().getFullYear()} Freelancer Portfolio. All rights
             reserved.
           </p>

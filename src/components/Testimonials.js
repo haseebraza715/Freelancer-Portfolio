@@ -33,7 +33,7 @@ const Testimonials = () => {
   return (
     <section
       id="testimonials"
-      className="bg-white py-20 overflow-hidden"
+      className="bg-[#1E293B] py-20 overflow-hidden"
       aria-labelledby="testimonials-heading"
     >
       {/* Section Title */}
@@ -46,38 +46,46 @@ const Testimonials = () => {
       >
         <h2
           id="testimonials-heading"
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12 text-[#F9FAFB]"
         >
           What Our Clients Say
         </h2>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.article
               key={testimonial.id}
-              className="bg-gray-100 rounded-lg shadow-lg p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:shadow-2xl"
+              className="bg-[#1E293B] rounded-lg shadow-md p-6 flex flex-col items-center text-center transition-all transform hover:scale-105 hover:shadow-xl border border-[#3B82F6]"
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true }}
             >
               {/* Client Image */}
-              <motion.img
-                src={testimonial.image}
-                alt={`Photo of ${testimonial.name}`}
-                className="w-20 h-20 rounded-full mb-4 border-4 border-blue-500 shadow-lg"
+              <motion.div
+                className="w-20 h-20 rounded-full mb-4 overflow-hidden border-4 border-[#3B82F6] shadow-lg"
                 whileHover={{ scale: 1.1 }}
-              />
+              >
+                <img
+                  src={testimonial.image}
+                  alt={`Photo of ${testimonial.name}`}
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+
               {/* Client Feedback */}
-              <p className="text-gray-600 text-sm sm:text-base mb-4 italic leading-relaxed">
+              <p className="text-[#F9FAFB] text-opacity-80 text-sm sm:text-base mb-4 italic leading-relaxed">
                 "{testimonial.feedback}"
               </p>
+
               {/* Client Name */}
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-800">
+              <h3 className="text-lg sm:text-xl font-semibold text-[#F9FAFB]">
                 {testimonial.name}
               </h3>
+
               {/* Client Role */}
-              <p className="text-sm sm:text-base text-gray-500">
+              <p className="text-sm sm:text-base text-[#F9FAFB] text-opacity-60">
                 {testimonial.role}
               </p>
             </motion.article>

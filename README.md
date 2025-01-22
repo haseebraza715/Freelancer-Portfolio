@@ -20,7 +20,7 @@ A modern, responsive portfolio website designed to showcase services, projects, 
 ## Installation and Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<username>/<repository>.git
+   git clone https://github.com/haseebraza715/Freelancer-Portfolio.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -48,7 +48,4 @@ A modern, responsive portfolio website designed to showcase services, projects, 
 ## Live Demo
 Access the live version of the portfolio at:  
 [https://haseebraza715.github.io/Freelancer-Portfolio/](https://haseebraza715.github.io/Freelancer-Portfolio/)
-
-## License
-This project is licensed under the MIT License. You are free to use and modify the code for your own projects.
 

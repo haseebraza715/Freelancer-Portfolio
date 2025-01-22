@@ -77,16 +77,6 @@ const Header = () => {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-[#1E293B] text-white"
           >
-            {/* Logo in Mobile View */}
-            <div className="flex items-center justify-center py-4">
-              <img
-                src={coverI}
-                alt="Logo"
-                className="h-16 w-auto"
-                aria-label="Company Logo"
-              />
-            </div>
-            {/* Mobile Menu Items */}
             <ul className="flex flex-col px-6 py-5 space-y-4">
               {menuItems.map((item, index) => (
                 <li key={index}>

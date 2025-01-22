@@ -11,54 +11,53 @@ const Hero = () => {
     >
       {/* Hero Content */}
       <motion.div
-        className="relative z-10 container mx-auto px-6 flex flex-col lg:flex-row items-center justify-between"
+        className="relative z-10 container mx-auto px-6 flex flex-col items-center lg:flex-row lg:justify-between"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        {/* Left Side: Creative SVG Logo */}
-        <div className="lg:w-1/2 mt-8 lg:mt-0 order-2 lg:order-1">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
+        {/* Logo (Top on Mobile, Left on Desktop) */}
+        <motion.div
+          className="w-48 h-48 lg:w-64 lg:h-64 mb-8 lg:mb-0 lg:order-1"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 200 200"
+            className="w-full h-full"
+            aria-hidden="true"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 200 200"
-              className="w-64 h-64 lg:w-80 lg:h-80"
-              aria-hidden="true"
-            >
-              {/* Curvy "B" Shape */}
-              <path
-                d="M50,100 C50,50 100,50 100,100 C100,150 50,150 50,100 Z M100,100 C100,50 150,50 150,100 C150,150 100,150 100,100 Z"
-                fill="#FBBF24"
-                stroke="#1E293B"
-                strokeWidth="5"
-              />
-              {/* Bee Wings (Optional) */}
-              <path
-                d="M70,80 Q90,60 110,80 T150,80"
-                fill="none"
-                stroke="#1E293B"
-                strokeWidth="5"
-              />
-              <path
-                d="M70,120 Q90,140 110,120 T150,120"
-                fill="none"
-                stroke="#1E293B"
-                strokeWidth="5"
-              />
-              {/* Creative Dots */}
-              <circle cx="100" cy="50" r="5" fill="#FBBF24" />
-              <circle cx="150" cy="100" r="5" fill="#FBBF24" />
-              <circle cx="100" cy="150" r="5" fill="#FBBF24" />
-            </svg>
-          </motion.div>
-        </div>
+            {/* Curvy "B" Shape */}
+            <path
+              d="M50,100 C50,50 100,50 100,100 C100,150 50,150 50,100 Z M100,100 C100,50 150,50 150,100 C150,150 100,150 100,100 Z"
+              fill="#FBBF24"
+              stroke="#1E293B"
+              strokeWidth="5"
+            />
+            {/* Bee Wings (Optional) */}
+            <path
+              d="M70,80 Q90,60 110,80 T150,80"
+              fill="none"
+              stroke="#1E293B"
+              strokeWidth="5"
+            />
+            <path
+              d="M70,120 Q90,140 110,120 T150,120"
+              fill="none"
+              stroke="#1E293B"
+              strokeWidth="5"
+            />
+            {/* Creative Dots */}
+            <circle cx="100" cy="50" r="5" fill="#FBBF24" />
+            <circle cx="150" cy="100" r="5" fill="#FBBF24" />
+            <circle cx="100" cy="150" r="5" fill="#FBBF24" />
+          </svg>
+        </motion.div>
 
-        {/* Right Side: Text Content */}
-        <div className="lg:w-1/2 text-center lg:text-left order-1 lg:order-2">
+        {/* Text Content (Below Logo on Mobile, Right on Desktop) */}
+        <div className="lg:w-1/2 text-center lg:text-left lg:order-2">
           {/* Tagline */}
           <motion.p
             className="text-sm uppercase tracking-wide text-[#94A3B8] mb-4 font-medium"
@@ -72,20 +71,20 @@ const Hero = () => {
           {/* Main Heading */}
           <motion.h1
             id="hero-heading"
-            className="text-5xl sm:text-6xl font-bold mb-6 leading-tight tracking-tighter"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tighter"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
             Creating Timeless<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#FBBF24]">
-               Digital Experiences
+              Digital Experiences
             </span>
           </motion.h1>
 
           {/* Subheading */}
           <motion.p
-            className="text-lg max-w-lg mx-auto mb-8 text-[#94A3B8] leading-relaxed ml-2"
+            className="text-lg max-w-lg mx-auto mb-8 text-[#94A3B8] leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
