@@ -60,7 +60,7 @@ const Hero = () => {
         <div className="lg:w-1/2 text-center lg:text-left lg:order-2">
           {/* Tagline */}
           <motion.p
-            className="text-sm uppercase tracking-wide text-[#94A3B8] mb-4 font-medium"
+            className="text-sm uppercase tracking-wide text-[#94A3B8] mb-4 font-medium mr-4 lg:mr-0 lg:text-left" 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1 }}
@@ -84,7 +84,7 @@ const Hero = () => {
 
           {/* Subheading */}
           <motion.p
-            className="text-lg max-w-lg mx-auto mb-8 text-[#94A3B8] leading-relaxed"
+            className="text-lg max-w-lg mx-auto mb-8 text-[#94A3B8] leading-relaxed ml-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
