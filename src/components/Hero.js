@@ -6,102 +6,161 @@ const Hero = () => {
   return (
     <header
       id="home"
-      className="relative bg-black text-white h-screen flex items-center justify-center text-center overflow-hidden"
+      className="relative bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#3B82F6] text-white h-screen flex items-center justify-center text-center overflow-hidden"
       aria-labelledby="hero-heading"
     >
       {/* Hero Content */}
       <motion.div
-        className="relative z-10 container mx-auto px-6"
+        className="relative z-10 container mx-auto px-6 flex flex-col lg:flex-row items-center justify-between"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        {/* Tagline */}
-        <motion.p
-          className="text-sm uppercase tracking-wider text-gray-400 mb-4"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.1 }}
-        >
-          Redefining Digital Excellence
-        </motion.p>
-
-        {/* Main Heading */}
-        <motion.h1
-          id="hero-heading"
-          className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight tracking-tight"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          Creating Timeless <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-teal-400">
-            Digital Experiences
-          </span>
-        </motion.h1>
-
-        {/* Subheading */}
-        <motion.p
-          className="text-lg max-w-2xl mx-auto mb-8 text-gray-400"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          Empowering{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-teal-400 font-semibold">
-            <Typewriter
-              words={["Ideas", "Dreams", "Visions"]}
-              loop
-              cursor
-              cursorStyle="|"
-              typeSpeed={100}
-              deleteSpeed={50}
-              delaySpeed={1000}
-            />
-          </span>{" "}
-          with creativity, precision, and innovation.
-        </motion.p>
-
-        {/* Call-to-Action Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-          <motion.button
-            className="px-8 py-4 text-sm rounded-full font-bold text-white bg-gradient-to-r from-purple-600 to-teal-500 hover:from-teal-500 hover:to-purple-600 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400"
-            whileHover={{
-              scale: 1.1,
-              boxShadow: "0px 0px 15px rgba(139, 92, 246, 0.6)",
-            }}
-            whileTap={{ scale: 0.95 }}
+        {/* Left Side: Creative SVG Logo */}
+        <div className="lg:w-1/2 mt-8 lg:mt-0 order-2 lg:order-1">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
           >
-            Get Started
-          </motion.button>
-          <motion.button
-            className="px-8 py-4 text-sm rounded-full font-bold text-white border-2 border-purple-600 hover:border-teal-500 transition-all duration-300 hover:bg-purple-600 hover:text-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400"
-            whileHover={{
-              scale: 1.1,
-              backgroundColor: "#8A2BE2",
-              color: "#ffffff",
-            }}
-            whileTap={{ scale: 0.95 }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 200 200"
+              className="w-64 h-64 lg:w-80 lg:h-80"
+              aria-hidden="true"
+            >
+              {/* Curvy "B" Shape */}
+              <path
+                d="M50,100 C50,50 100,50 100,100 C100,150 50,150 50,100 Z M100,100 C100,50 150,50 150,100 C150,150 100,150 100,100 Z"
+                fill="#FBBF24"
+                stroke="#1E293B"
+                strokeWidth="5"
+              />
+              {/* Bee Wings (Optional) */}
+              <path
+                d="M70,80 Q90,60 110,80 T150,80"
+                fill="none"
+                stroke="#1E293B"
+                strokeWidth="5"
+              />
+              <path
+                d="M70,120 Q90,140 110,120 T150,120"
+                fill="none"
+                stroke="#1E293B"
+                strokeWidth="5"
+              />
+              {/* Creative Dots */}
+              <circle cx="100" cy="50" r="5" fill="#FBBF24" />
+              <circle cx="150" cy="100" r="5" fill="#FBBF24" />
+              <circle cx="100" cy="150" r="5" fill="#FBBF24" />
+            </svg>
+          </motion.div>
+        </div>
+
+        {/* Right Side: Text Content */}
+        <div className="lg:w-1/2 text-center lg:text-left order-1 lg:order-2">
+          {/* Tagline */}
+          <motion.p
+            className="text-sm uppercase tracking-wide text-[#94A3B8] mb-4 font-medium"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.1 }}
           >
-            Learn More
-          </motion.button>
+            Redefining Digital Excellence
+          </motion.p>
+
+          {/* Main Heading */}
+          <motion.h1
+            id="hero-heading"
+            className="text-5xl sm:text-6xl font-bold mb-6 leading-tight tracking-tighter"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            Creating Timeless<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#FBBF24]">
+               Digital Experiences
+            </span>
+          </motion.h1>
+
+          {/* Subheading */}
+          <motion.p
+            className="text-lg max-w-lg mx-auto mb-8 text-[#94A3B8] leading-relaxed ml-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            Empowering{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#FBBF24] font-semibold">
+              <Typewriter
+                words={["Ideas", "Dreams", "Visions"]}
+                loop
+                cursor
+                cursorStyle="|"
+                typeSpeed={100}
+                deleteSpeed={50}
+                delaySpeed={1000}
+              />
+            </span>{" "}
+            with creativity, precision, and innovation.
+          </motion.p>
+
+          {/* Call-to-Action Buttons */}
+          <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+            <motion.button
+              className="px-8 py-4 text-base rounded-full font-bold text-[#1E293B] bg-gradient-to-r from-[#3B82F6] to-[#FBBF24] hover:from-[#FBBF24] hover:to-[#3B82F6] transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#FBBF24] focus:ring-offset-2 focus:ring-offset-[#1E293B]"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get Started
+            </motion.button>
+            <motion.button
+              className="px-8 py-4 text-base rounded-full font-bold text-white border-2 border-[#3B82F6] hover:border-[#FBBF24] transition-all duration-300 hover:bg-[#3B82F6] hover:text-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#FBBF24] focus:ring-offset-2 focus:ring-offset-[#1E293B]"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Learn More
+            </motion.button>
+          </div>
         </div>
       </motion.div>
 
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 z-0">
+        {/* Animated Blobs */}
         <motion.div
-          className="absolute top-10 left-20 w-20 h-20 bg-gradient-to-r from-purple-800 to-teal-800 rounded-full opacity-30 blur-3xl"
+          className="absolute top-10 left-20 w-20 h-20 bg-gradient-to-r from-[#1E293B] to-[#3B82F6] rounded-full opacity-30 blur-2xl"
           initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.4, scale: 1.5 }}
+          animate={{ opacity: 0.4, scale: 1.3 }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-20 right-16 w-16 h-16 bg-gradient-to-r from-teal-800 to-purple-800 rounded-full opacity-30 blur-2xl"
+          className="absolute bottom-16 right-16 w-16 h-16 bg-gradient-to-r from-[#3B82F6] to-[#1E293B] rounded-full opacity-30 blur-xl"
           initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.4, scale: 1.3 }}
+          animate={{ opacity: 0.4, scale: 1.1 }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
+
+        {/* Particle Animation */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-[#FBBF24] rounded-full"
+              initial={{ opacity: 0, y: -100 }}
+              animate={{
+                opacity: [0, 1, 0],
+                y: [0, window.innerHeight],
+                x: Math.random() * window.innerWidth,
+              }}
+              transition={{
+                duration: Math.random() * 5 + 5,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Wave Divider */}
@@ -125,7 +184,7 @@ const Hero = () => {
               />
               <stop
                 offset="100%"
-                style={{ stopColor: "#0F172A", stopOpacity: 1 }}
+                style={{ stopColor: "#3B82F6", stopOpacity: 1 }}
               />
             </linearGradient>
           </defs>

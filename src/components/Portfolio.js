@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import cover from "../images/cover.jpg";
+import cover from "../images/cover.jpg"; // Replace with your actual image path
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -16,6 +16,13 @@ const Portfolio = () => {
       description: "Track your expenses and savings efficiently.",
       image: cover,
       link: "#",
+      problem:
+        "Managing personal finances can be overwhelming without a clear overview of income and expenses.",
+      solution:
+        "A user-friendly budget tracker that categorizes expenses, sets savings goals, and provides real-time insights.",
+      technologies: ["React", "Node.js", "MongoDB"],
+      client: "Personal Finance App",
+      duration: "3 months",
     },
     {
       id: 2,
@@ -24,6 +31,13 @@ const Portfolio = () => {
       description: "Visualize and manage your investments in real-time.",
       image: cover,
       link: "#",
+      problem:
+        "Investors struggle to track multiple portfolios and analyze performance effectively.",
+      solution:
+        "An interactive dashboard that consolidates all investments, provides analytics, and offers actionable insights.",
+      technologies: ["React", "D3.js", "Firebase"],
+      client: "Investment Firm",
+      duration: "6 months",
     },
     {
       id: 3,
@@ -32,6 +46,13 @@ const Portfolio = () => {
       description: "Interactive dashboards for insightful data analysis.",
       image: cover,
       link: "#",
+      problem:
+        "Businesses need better tools to visualize and interpret complex data sets.",
+      solution:
+        "A customizable data visualization platform that transforms raw data into interactive charts and graphs.",
+      technologies: ["Python", "Tableau", "SQL"],
+      client: "Tech Startup",
+      duration: "4 months",
     },
     {
       id: 4,
@@ -40,6 +61,13 @@ const Portfolio = () => {
       description: "AI-driven predictions based on historical data.",
       image: cover,
       link: "#",
+      problem:
+        "Companies lack tools to predict future trends and make data-driven decisions.",
+      solution:
+        "A predictive analytics platform that uses machine learning to forecast trends and outcomes.",
+      technologies: ["Python", "TensorFlow", "AWS"],
+      client: "E-Commerce Company",
+      duration: "5 months",
     },
     {
       id: 5,
@@ -48,6 +76,13 @@ const Portfolio = () => {
       description: "A modern and fully responsive e-commerce platform.",
       image: cover,
       link: "#",
+      problem:
+        "Businesses need a scalable and user-friendly platform to sell products online.",
+      solution:
+        "A fully responsive e-commerce website with seamless navigation, secure payments, and admin dashboard.",
+      technologies: ["React", "Node.js", "Stripe"],
+      client: "Retail Brand",
+      duration: "6 months",
     },
     {
       id: 6,
@@ -56,6 +91,13 @@ const Portfolio = () => {
       description: "A personal portfolio to showcase skills and projects.",
       image: cover,
       link: "#",
+      problem:
+        "Professionals need a platform to showcase their work and attract opportunities.",
+      solution:
+        "A sleek and modern portfolio website with project highlights, skills, and contact information.",
+      technologies: ["Next.js", "Tailwind CSS", "Vercel"],
+      client: "Freelance Developer",
+      duration: "2 months",
     },
   ];
 
@@ -70,11 +112,11 @@ const Portfolio = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-gray-50 via-gray-100 to-white py-16">
+    <section className="relative bg-[#1E293B] py-16">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute w-1/3 h-1/3 bg-blue-100 rounded-full blur-3xl opacity-50 top-16 left-20"></div>
-        <div className="absolute w-1/4 h-1/4 bg-purple-100 rounded-full blur-3xl opacity-50 bottom-10 right-20"></div>
+        <div className="absolute w-1/3 h-1/3 bg-[#3B82F6] rounded-full blur-3xl opacity-20 top-16 left-20"></div>
+        <div className="absolute w-1/4 h-1/4 bg-[#3B82F6] rounded-full blur-3xl opacity-20 bottom-10 right-20"></div>
       </div>
 
       <motion.div
@@ -85,15 +127,15 @@ const Portfolio = () => {
         viewport={{ once: true }}
       >
         {/* Header Section */}
-        <h2 className="text-3xl md:text-5xl font-extrabold text-gray-800 mb-4">
-          <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+        <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
+          <span className="bg-gradient-to-r from-[#3B82F6] to-[#FBBF24] bg-clip-text text-transparent">
             Our
           </span>{" "}
-          <span className="text-gray-900">Portfolio</span>
+          <span className="text-white">Portfolio</span>
         </h2>
-        <p className="text-base md:text-xl text-gray-600 mb-12">
+        <p className="text-base md:text-xl text-[#94A3B8] mb-12">
           Showcasing our{" "}
-          <span className="font-semibold text-gray-800">
+          <span className="font-semibold text-white">
             most innovative work
           </span>
         </p>
@@ -106,8 +148,8 @@ const Portfolio = () => {
               onClick={() => setActiveCategory(category)}
               className={`px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-base font-medium transition-transform transform ${
                 activeCategory === category
-                  ? "bg-blue-500 text-white scale-105 shadow-md"
-                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                  ? "bg-[#3B82F6] text-white scale-105 shadow-md"
+                  : "bg-[#F9FAFB] text-[#374151] hover:bg-[#3B82F6] hover:text-white"
               }`}
             >
               {category}
@@ -120,7 +162,7 @@ const Portfolio = () => {
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="relative bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all cursor-pointer"
+              className="relative bg-[#F9FAFB] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all cursor-pointer"
               whileHover={{ y: -10 }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -137,13 +179,13 @@ const Portfolio = () => {
 
               {/* Project Details */}
               <div className="p-4 md:p-6">
-                <h4 className="text-base md:text-lg font-bold text-gray-800 mb-2">
+                <h4 className="text-base md:text-lg font-bold text-[#374151] mb-2">
                   {project.title}
                 </h4>
-                <p className="text-sm text-gray-600 mb-2">
+                <p className="text-sm text-[#94A3B8] mb-2">
                   {project.description}
                 </p>
-                <span className="text-blue-500 font-medium hover:underline cursor-pointer">
+                <span className="text-[#3B82F6] font-medium hover:underline cursor-pointer">
                   View Details
                 </span>
               </div>
@@ -153,32 +195,71 @@ const Portfolio = () => {
       </motion.div>
 
       {/* Modal for Project Details */}
-      {showModal && selectedProject && (
-        <motion.div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <div className="bg-white rounded-lg shadow-lg max-w-sm md:max-w-lg w-full mx-4 p-6 relative">
-            <button
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
-              onClick={() => setShowModal(false)}
-            >
-              &times;
-            </button>
-            <img
-              src={selectedProject.image}
-              alt={selectedProject.title}
-              className="w-full h-40 md:h-48 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-bold mb-2">{selectedProject.title}</h3>
-            <p className="text-gray-700 mb-4">{selectedProject.description}</p>
+        {showModal && selectedProject && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="bg-[#F9FAFB] rounded-lg shadow-lg max-w-sm md:max-w-lg w-full mx-4 p-6 relative">
+          <button
+            className="absolute top-2 right-2 text-[#374151] hover:text-[#3B82F6] bg-[#F9FAFB] rounded-full p-2 transition-colors duration-300"
+            onClick={() => setShowModal(false)}
+          >
+            &times;
+          </button>
+          <h3 className="text-xl font-bold mb-2 text-[#374151]">
+            {selectedProject.title}
+          </h3>
+          <p className="text-[#94A3B8] mb-4">{selectedProject.description}</p>
+
+          {/* Problem and Solution Section */}
+            <div className="mb-4">
+              <h4 className="text-lg font-semibold mb-2 text-[#374151]">
+                Problem
+              </h4>
+              <p className="text-[#94A3B8]">{selectedProject.problem}</p>
+            </div>
+            <div className="mb-4">
+              <h4 className="text-lg font-semibold mb-2 text-[#374151]">
+                Solution
+              </h4>
+              <p className="text-[#94A3B8]">{selectedProject.solution}</p>
+            </div>
+
+            {/* Additional Details */}
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <h4 className="text-lg font-semibold mb-2 text-[#374151]">
+                  Technologies
+                </h4>
+                <ul className="text-[#94A3B8]">
+                  {selectedProject.technologies.map((tech, index) => (
+                    <li key={index}>{tech}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold mb-2 text-[#374151]">
+                  Client
+                </h4>
+                <p className="text-[#94A3B8]">{selectedProject.client}</p>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold mb-2 text-[#374151]">
+                  Duration
+                </h4>
+                <p className="text-[#94A3B8]">{selectedProject.duration}</p>
+              </div>
+            </div>
+
+            {/* View Full Project Link */}
             <a
               href={selectedProject.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 font-medium hover:underline"
+              className="text-[#3B82F6] font-medium hover:underline"
             >
               View Full Project
             </a>

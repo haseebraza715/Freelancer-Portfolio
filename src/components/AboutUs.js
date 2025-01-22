@@ -65,48 +65,48 @@ const AboutUs = () => {
       name: "Strategy Development",
       icon: (
         <FaChartLine
-          className="w-12 h-12 mb-4 text-blue-500"
+          className="w-12 h-12 mb-4 text-[#3B82F6]"
           aria-hidden="true"
         />
       ),
-      color: "bg-blue-100",
+      color: "bg-blue-50",
     },
     {
       name: "Branding & Positioning",
       icon: (
         <FaPalette
-          className="w-12 h-12 mb-4 text-purple-500"
+          className="w-12 h-12 mb-4 text-[#FBBF24]"
           aria-hidden="true"
         />
       ),
-      color: "bg-purple-100",
+      color: "bg-yellow-50",
     },
     {
       name: "Financial Transformation",
       icon: (
         <FaCoins
-          className="w-12 h-12 mb-4 text-yellow-500"
+          className="w-12 h-12 mb-4 text-[#3B82F6]"
           aria-hidden="true"
         />
       ),
-      color: "bg-yellow-100",
+      color: "bg-blue-50",
     },
     {
       name: "Value Creation",
       icon: (
         <FaLightbulb
-          className="w-12 h-12 mb-4 text-green-500"
+          className="w-12 h-12 mb-4 text-[#FBBF24]"
           aria-hidden="true"
         />
       ),
-      color: "bg-green-100",
+      color: "bg-yellow-50",
     },
     {
       name: "Full Stack Development",
       icon: (
-        <FaCode className="w-12 h-12 mb-4 text-indigo-500" aria-hidden="true" />
+        <FaCode className="w-12 h-12 mb-4 text-[#3B82F6]" aria-hidden="true" />
       ),
-      color: "bg-indigo-100",
+      color: "bg-blue-50",
     },
   ];
 
@@ -114,49 +114,49 @@ const AboutUs = () => {
     {
       name: "HTML",
       icon: (
-        <FaHtml5 className="w-8 h-8 mb-2 text-orange-500" aria-hidden="true" />
+        <FaHtml5 className="w-8 h-8 mb-2 text-[#FBBF24]" aria-hidden="true" />
       ),
-      color: "bg-orange-100",
+      color: "bg-yellow-50",
     },
     {
       name: "CSS",
       icon: (
-        <FaCss3 className="w-8 h-8 mb-2 text-blue-500" aria-hidden="true" />
+        <FaCss3 className="w-8 h-8 mb-2 text-[#3B82F6]" aria-hidden="true" />
       ),
-      color: "bg-blue-100",
+      color: "bg-blue-50",
     },
     {
       name: "JavaScript",
       icon: (
-        <FaJs className="w-8 h-8 mb-2 text-yellow-500" aria-hidden="true" />
+        <FaJs className="w-8 h-8 mb-2 text-[#FBBF24]" aria-hidden="true" />
       ),
-      color: "bg-yellow-100",
+      color: "bg-yellow-50",
     },
     {
       name: "React",
       icon: (
-        <FaReact className="w-8 h-8 mb-2 text-blue-500" aria-hidden="true" />
+        <FaReact className="w-8 h-8 mb-2 text-[#3B82F6]" aria-hidden="true" />
       ),
-      color: "bg-blue-100",
+      color: "bg-blue-50",
     },
     {
       name: "Node.js",
       icon: (
-        <FaNodeJs className="w-8 h-8 mb-2 text-green-500" aria-hidden="true" />
+        <FaNodeJs className="w-8 h-8 mb-2 text-[#3B82F6]" aria-hidden="true" />
       ),
-      color: "bg-green-100",
+      color: "bg-blue-50",
     },
     {
       name: "Git",
       icon: (
-        <FaGitAlt className="w-8 h-8 mb-2 text-red-500" aria-hidden="true" />
+        <FaGitAlt className="w-8 h-8 mb-2 text-[#FBBF24]" aria-hidden="true" />
       ),
-      color: "bg-red-100",
+      color: "bg-yellow-50",
     },
   ];
 
   return (
-    <section className="relative bg-gradient-to-b from-gray-50 to-white py-20">
+    <section className="relative bg-[#F9FAFB] py-20">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute w-1/2 h-1/2 bg-gradient-to-r from-blue-200 to-purple-200 blur-3xl rounded-full top-16 left-10"></div>
@@ -166,7 +166,7 @@ const AboutUs = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Heading */}
         <motion.h2
-          className="text-4xl sm:text-5xl font-extrabold mb-8 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+          className="text-4xl sm:text-5xl font-extrabold mb-8 text-[#374151]"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -175,7 +175,7 @@ const AboutUs = () => {
         </motion.h2>
 
         <motion.p
-          className="text-lg sm:text-xl text-gray-600 mb-12 max-w-3xl mx-auto"
+          className="text-lg sm:text-xl text-[#94A3B8] mb-12 max-w-3xl mx-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
@@ -190,7 +190,7 @@ const AboutUs = () => {
           {industries.map((industry, index) => (
             <motion.div
               key={index}
-              className={`flex items-center px-6 py-3 bg-gradient-to-r ${industry.gradient} shadow-md rounded-full text-sm font-medium text-gray-800 hover:shadow-lg transform hover:scale-105 transition`}
+              className={`flex items-center px-6 py-3 bg-gradient-to-r ${industry.gradient} shadow-md rounded-full text-sm font-medium text-[#374151] hover:shadow-lg transform hover:scale-105 transition`}
               whileHover={{ scale: 1.05 }}
             >
               {industry.icon}
@@ -200,7 +200,9 @@ const AboutUs = () => {
         </div>
 
         {/* Services Section */}
-        <h3 className="text-2xl sm:text-3xl font-bold mb-8">What We Do</h3>
+        <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-[#374151]">
+          What We Do
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => (
             <motion.div
@@ -209,13 +211,17 @@ const AboutUs = () => {
               whileHover={{ scale: 1.05 }}
             >
               {service.icon}
-              <h4 className="text-lg font-semibold">{service.name}</h4>
+              <h4 className="text-lg font-semibold text-[#374151]">
+                {service.name}
+              </h4>
             </motion.div>
           ))}
         </div>
 
         {/* Skills Section */}
-        <h3 className="text-2xl sm:text-3xl font-bold mb-8">Our Skills</h3>
+        <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-[#374151]">
+          Our Skills
+        </h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8">
           {skills.map((skill, index) => (
             <motion.div
@@ -224,7 +230,7 @@ const AboutUs = () => {
               whileHover={{ scale: 1.1 }}
             >
               {skill.icon}
-              <p className="text-sm font-medium">{skill.name}</p>
+              <p className="text-sm font-medium text-[#374151]">{skill.name}</p>
             </motion.div>
           ))}
         </div>
