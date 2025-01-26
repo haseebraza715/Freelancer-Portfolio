@@ -1,248 +1,267 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  FaPhoneAlt,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaUser,
-  FaQuestionCircle,
-} from "react-icons/fa";
+import { FaEnvelope, FaUser, FaQuestionCircle } from "react-icons/fa";
+
+// Shared Color Scheme
+const colors = {
+  primary: "#1E293B",
+  secondary: "#F59E0B",
+  background: "#F8FAFC",
+  cardBg: "#FFFFFF",
+  textPrimary: "#1E293B",
+  textSecondary: "#64748B",
+  border: "#E2E8F0",
+};
 
 const Contact = () => {
   return (
-    <section id="contact" className="relative bg-[#F9FAFB] py-20 overflow-hidden">
-      {/* Subtle Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/10 via-[#F9FAFB] to-[#FBBF24]/10 opacity-80 z-0"></div>
+    <section
+      id="contact"
+      className="relative py-16 md:py-24 overflow-hidden"
+      style={{ backgroundColor: colors.background }}
+      aria-labelledby="contact-heading"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Heading */}
+                <motion.div
+                  className="relative mb-12 text-center"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1 }}
+                >
+                  {/* Gradient Heading */}
+                  <motion.h2
+                    className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-[#1E293B] to-[#F59E0B] bg-clip-text text-transparent"
+                  >
+                    Contact Us
+                  </motion.h2>
+        
+                  {/* Decorative Line */}
+                  <motion.div
+                    className="w-16 h-1.5 bg-gradient-to-r from-[#1E293B] to-[#F59E0B] mx-auto mt-4 rounded-full"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                  />
+                </motion.div>
 
-      {/* Parallax Elements */}
-      <motion.div
-        className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-r from-[#3B82F6]/30 to-[#FBBF24]/30 opacity-30 blur-3xl rounded-full"
-        animate={{ x: [0, 20, -20], y: [0, 20, -20] }}
-        transition={{ repeat: Infinity, duration: 6 }}
-      ></motion.div>
-      <motion.div
-        className="absolute bottom-0 right-0 w-56 h-56 bg-gradient-to-r from-[#FBBF24]/30 to-[#3B82F6]/30 opacity-30 blur-3xl rounded-full"
-        animate={{ x: [0, -20, 20], y: [0, -20, 20] }}
-        transition={{ repeat: Infinity, duration: 8 }}
-      ></motion.div>
-
-      <motion.div
-        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        {/* Title */}
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-[#3B82F6] to-[#FBBF24] text-transparent bg-clip-text"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <span>Contact</span> Us
-        </motion.h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Left Section: Support Card */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          {/* Support Card */}
           <motion.div
-            className="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-center"
+            className="rounded-2xl p-8"
+            style={{
+              backgroundColor: colors.cardBg,
+              border: `1px solid ${colors.border}`,
+              boxShadow: "0 8px 32px rgba(30, 41, 59, 0.05)",
+            }}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
             <SupportCard />
           </motion.div>
 
-          {/* Right Section: Contact Form */}
+          {/* Contact Form */}
           <motion.div
-            className="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
+            className="rounded-2xl p-8"
+            style={{
+              backgroundColor: colors.cardBg,
+              border: `1px solid ${colors.border}`,
+              boxShadow: "0 8px 32px rgba(30, 41, 59, 0.05)",
+            }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <form action="#" method="POST" className="flex flex-col h-full">
-              <div className="mb-6">
+            <form className="flex flex-col gap-6">
+              {/* Name Input */}
+              <div className="space-y-2">
                 <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-[#374151] mb-2"
+                  className="block text-sm font-medium"
+                  style={{ color: colors.textPrimary }}
                 >
                   Your Name
                 </label>
                 <div className="relative">
-                  <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#94A3B8]" />
+                  <FaUser
+                    className="absolute left-3 top-1/2 -translate-y-1/2"
+                    style={{ color: colors.textSecondary }}
+                  />
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    className="w-full pl-10 p-3 rounded-lg bg-[#F9FAFB] text-[#374151] border border-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]"
+                    className="w-full pl-10 pr-4 py-3 rounded-lg border focus:ring-2 focus:outline-none"
+                    style={{
+                      backgroundColor: colors.background,
+                      borderColor: colors.border,
+                      color: colors.textPrimary,
+                      focusRingColor: colors.secondary,
+                    }}
                     placeholder="John Doe"
                   />
                 </div>
               </div>
-              <div className="mb-6">
+
+              {/* Email Input */}
+              <div className="space-y-2">
                 <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-[#374151] mb-2"
+                  className="block text-sm font-medium"
+                  style={{ color: colors.textPrimary }}
                 >
                   Email Address
                 </label>
                 <div className="relative">
-                  <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#94A3B8]" />
+                  <FaEnvelope
+                    className="absolute left-3 top-1/2 -translate-y-1/2"
+                    style={{ color: colors.textSecondary }}
+                  />
                   <input
                     type="email"
-                    id="email"
-                    name="email"
-                    className="w-full pl-10 p-3 rounded-lg bg-[#F9FAFB] text-[#374151] border border-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]"
+                    className="w-full pl-10 pr-4 py-3 rounded-lg border focus:ring-2 focus:outline-none"
+                    style={{
+                      backgroundColor: colors.background,
+                      borderColor: colors.border,
+                      color: colors.textPrimary,
+                      focusRingColor: colors.secondary,
+                    }}
                     placeholder="example@email.com"
                   />
                 </div>
               </div>
-              <div className="mb-6">
+
+              {/* Message Input */}
+              <div className="space-y-2">
                 <label
-                  htmlFor="subject"
-                  className="block text-sm font-medium text-[#374151] mb-2"
-                >
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  className="w-full p-3 rounded-lg bg-[#F9FAFB] text-[#374151] border border-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]"
-                  placeholder="Subject"
-                />
-              </div>
-              <div className="mb-6 flex-1">
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-[#374151] mb-2"
+                  className="block text-sm font-medium"
+                  style={{ color: colors.textPrimary }}
                 >
                   Message
                 </label>
                 <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  className="w-full p-3 rounded-lg bg-[#F9FAFB] text-[#374151] border border-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6]"
-                  placeholder="Write your message here..."
+                  rows="4"
+                  className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:outline-none"
+                  style={{
+                    backgroundColor: colors.background,
+                    borderColor: colors.border,
+                    color: colors.textPrimary,
+                    focusRingColor: colors.secondary,
+                  }}
+                  placeholder="How can we help you?"
                 ></textarea>
               </div>
-              <button
+
+              {/* Submit Button */}
+              <motion.button
                 type="submit"
-                className="bg-gradient-to-r from-[#FBBF24] to-[#FBBF24]/90 hover:from-[#FBBF24]/90 hover:to-[#FBBF24] text-[#374151] font-medium py-3 rounded-lg shadow-md transition-all"
+                className="w-full py-3 rounded-lg font-medium transition-colors"
+                style={{
+                  backgroundColor: colors.secondary,
+                  color: colors.cardBg,
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 Send Message
-              </button>
+              </motion.button>
             </form>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
 
 const SupportCard = () => {
   const examples = [
-    "Does your product work for SMBs?",
-    "Can I pause my membership without losing my data?",
-    "How does seat based pricing work?",
-    "What's the meaning of life?",
+    "How quickly can we get started?",
+    "What's your typical response time?",
+    "Do you offer ongoing support?",
+    "What industries do you specialize in?",
   ];
 
   return (
-    <div className="w-full max-w-xl space-y-6">
-      <div>
-        <p className="mb-1.5 text-sm font-light uppercase text-[#94A3B8]">
-          <FaQuestionCircle className="inline-block mr-2" />/ Support
-        </p>
-        <hr className="border-[#94A3B8]" />
+    <div className="space-y-6">
+      <div className="space-y-4">
+        <div className="flex items-center gap-2">
+          <FaQuestionCircle style={{ color: colors.secondary }} />
+          <span
+            className="text-sm font-medium uppercase tracking-wide"
+            style={{ color: colors.textSecondary }}
+          >
+            Support
+          </span>
+        </div>
+        <hr style={{ borderColor: colors.border }} />
       </div>
-      <p className="max-w-lg text-lg leading-relaxed text-[#374151]">
-        <strong>Have questions?</strong> We'd love to help! Contact support for
-        any issue you may face.
+
+      <p
+        className="text-lg leading-relaxed"
+        style={{ color: colors.textPrimary }}
+      >
+        <strong style={{ color: colors.secondary }}>Need help?</strong> Our team
+        is here to answer your questions.
       </p>
-      <div>
+
+      <div className="space-y-4">
         <Typewrite examples={examples} />
-        <hr className="border-[#94A3B8]" />
+        <hr style={{ borderColor: colors.border }} />
       </div>
-      <button className="w-full rounded-full border border-[#94A3B8] py-2 text-sm font-medium text-[#374151] transition-colors hover:bg-[#94A3B8] hover:text-white">
+
+      <motion.button
+        className="w-full py-2.5 rounded-lg border text-sm font-medium transition-colors"
+        style={{
+          borderColor: colors.border,
+          color: colors.textPrimary,
+        }}
+        whileHover={{
+          backgroundColor: colors.secondary,
+          color: colors.cardBg,
+          borderColor: colors.secondary,
+        }}
+      >
         Contact Support
-      </button>
+      </motion.button>
     </div>
   );
 };
 
-const LETTER_DELAY = 0.025;
-const BOX_FADE_DURATION = 0.125;
-const FADE_DELAY = 5;
-const MAIN_FADE_DURATION = 0.25;
-const SWAP_DELAY_IN_MS = 5500;
-
 const Typewrite = ({ examples }) => {
-  const [exampleIndex, setExampleIndex] = useState(0);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setExampleIndex((pv) => (pv + 1) % examples.length);
-    }, SWAP_DELAY_IN_MS);
-
-    return () => clearInterval(intervalId);
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % examples.length);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <p className="mb-2.5 text-sm font-light uppercase text-[#94A3B8]">
-      <span className="inline-block size-2 bg-[#94A3B8]" />
-      <span className="ml-3">
-        EXAMPLE:{" "}
-        {examples[exampleIndex].split("").map((l, i) => (
-          <motion.span
-            initial={{
-              opacity: 1,
-            }}
-            animate={{
-              opacity: 0,
-            }}
-            transition={{
-              delay: FADE_DELAY,
-              duration: MAIN_FADE_DURATION,
-              ease: "easeInOut",
-            }}
-            key={`${exampleIndex}-${i}`}
-            className="relative"
-          >
-            <motion.span
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              transition={{
-                delay: i * LETTER_DELAY,
-                duration: 0,
-              }}
-            >
-              {l}
-            </motion.span>
-            <motion.span
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                delay: i * LETTER_DELAY,
-                times: [0, 0.1, 1],
-                duration: BOX_FADE_DURATION,
-                ease: "easeInOut",
-              }}
-              className="absolute bottom-[3px] left-[1px] right-0 top-[3px] bg-[#94A3B8]"
-            />
-          </motion.span>
-        ))}
-      </span>
-    </p>
+    <div className="flex items-start gap-2">
+      <div
+        className="w-2 h-2 rounded-full mt-1.5"
+        style={{ backgroundColor: colors.secondary }}
+      />
+      <div className="flex-1">
+        <p
+          className="text-sm uppercase tracking-wide"
+          style={{ color: colors.textSecondary }}
+        >
+          Common questions:
+        </p>
+        <motion.p
+          key={index}
+          className="text-base"
+          style={{ color: colors.textPrimary }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+        >
+          {examples[index]}
+        </motion.p>
+      </div>
+    </div>
   );
 };
 

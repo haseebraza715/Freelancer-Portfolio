@@ -1,271 +1,355 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import cover from "../images/cover.jpg"; // Replace with your actual image path
+import { allProjects } from "../data/projects";
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [showModal, setShowModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [visibleProjects, setVisibleProjects] = useState(6);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const categories = ["All", "Finance", "Data Analytics", "Web Development"];
-  const allProjects = [
-    {
-      id: 1,
-      category: "Finance",
-      title: "Budget Tracker",
-      description: "Track your expenses and savings efficiently.",
-      image: cover,
-      link: "#",
-      problem:
-        "Managing personal finances can be overwhelming without a clear overview of income and expenses.",
-      solution:
-        "A user-friendly budget tracker that categorizes expenses, sets savings goals, and provides real-time insights.",
-      technologies: ["React", "Node.js", "MongoDB"],
-      client: "Personal Finance App",
-      duration: "3 months",
-    },
-    {
-      id: 2,
-      category: "Finance",
-      title: "Investment Dashboard",
-      description: "Visualize and manage your investments in real-time.",
-      image: cover,
-      link: "#",
-      problem:
-        "Investors struggle to track multiple portfolios and analyze performance effectively.",
-      solution:
-        "An interactive dashboard that consolidates all investments, provides analytics, and offers actionable insights.",
-      technologies: ["React", "D3.js", "Firebase"],
-      client: "Investment Firm",
-      duration: "6 months",
-    },
-    {
-      id: 3,
-      category: "Data Analytics",
-      title: "Data Visualization Tool",
-      description: "Interactive dashboards for insightful data analysis.",
-      image: cover,
-      link: "#",
-      problem:
-        "Businesses need better tools to visualize and interpret complex data sets.",
-      solution:
-        "A customizable data visualization platform that transforms raw data into interactive charts and graphs.",
-      technologies: ["Python", "Tableau", "SQL"],
-      client: "Tech Startup",
-      duration: "4 months",
-    },
-    {
-      id: 4,
-      category: "Data Analytics",
-      title: "Predictive Analytics Platform",
-      description: "AI-driven predictions based on historical data.",
-      image: cover,
-      link: "#",
-      problem:
-        "Companies lack tools to predict future trends and make data-driven decisions.",
-      solution:
-        "A predictive analytics platform that uses machine learning to forecast trends and outcomes.",
-      technologies: ["Python", "TensorFlow", "AWS"],
-      client: "E-Commerce Company",
-      duration: "5 months",
-    },
-    {
-      id: 5,
-      category: "Web Development",
-      title: "E-Commerce Website",
-      description: "A modern and fully responsive e-commerce platform.",
-      image: cover,
-      link: "#",
-      problem:
-        "Businesses need a scalable and user-friendly platform to sell products online.",
-      solution:
-        "A fully responsive e-commerce website with seamless navigation, secure payments, and admin dashboard.",
-      technologies: ["React", "Node.js", "Stripe"],
-      client: "Retail Brand",
-      duration: "6 months",
-    },
-    {
-      id: 6,
-      category: "Web Development",
-      title: "Portfolio Website",
-      description: "A personal portfolio to showcase skills and projects.",
-      image: cover,
-      link: "#",
-      problem:
-        "Professionals need a platform to showcase their work and attract opportunities.",
-      solution:
-        "A sleek and modern portfolio website with project highlights, skills, and contact information.",
-      technologies: ["Next.js", "Tailwind CSS", "Vercel"],
-      client: "Freelance Developer",
-      duration: "2 months",
-    },
-  ];
+  // Color scheme
+  const colors = {
+    primary: "#1E293B", // Navy Blue
+    secondary: "#F59E0B", // Amber
+    background: "#F8FAFC", // Off-white
+    cardBg: "#FFFFFF",
+    textPrimary: "#1E293B",
+    textSecondary: "#64748B",
+    border: "#E2E8F0",
+  };
+
+  const categories = ["All", "Strategy", "M&A", "Technology", "Advisory"];
+
+  const getProjectCategory = (project) => {
+    if (project.category.includes("Strategic")) return "Strategy";
+    if (project.projectType.includes("M&A")) return "M&A";
+    if (project.industryFocus.includes("Technology")) return "Technology";
+    return "Advisory";
+  };
 
   const filteredProjects =
     activeCategory === "All"
       ? allProjects
-      : allProjects.filter((project) => project.category === activeCategory);
+      : allProjects.filter(
+          (project) => getProjectCategory(project) === activeCategory
+        );
 
-  const openModal = (project) => {
-    setSelectedProject(project);
-    setShowModal(true);
+  const showMoreProjects = () => {
+    setVisibleProjects((prev) => Math.min(prev + 6, filteredProjects.length));
   };
 
+  const showLessProjects = () => {
+    setVisibleProjects(6);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    setVisibleProjects(6);
+  }, [activeCategory]);
+
   return (
-    <section className="relative bg-[#1E293B] py-16">
-      {/* Background Effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute w-1/3 h-1/3 bg-[#3B82F6] rounded-full blur-3xl opacity-20 top-16 left-20"></div>
-        <div className="absolute w-1/4 h-1/4 bg-[#3B82F6] rounded-full blur-3xl opacity-20 bottom-10 right-20"></div>
-      </div>
-
-      <motion.div
-        className="container mx-auto px-4 sm:px-6 text-center relative z-10"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
+    <section
+      className="relative min-h-screen"
+      style={{ backgroundColor: colors.background }}
+    >
+      <div className="container mx-auto px-4 py-12 md:py-20 max-w-7xl relative z-10">
         {/* Header Section */}
-        <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
-          <span className="bg-gradient-to-r from-[#3B82F6] to-[#FBBF24] bg-clip-text text-transparent">
-            Our
-          </span>{" "}
-          <span className="text-white">Portfolio</span>
-        </h2>
-        <p className="text-base md:text-xl text-[#94A3B8] mb-12">
-          Showcasing our{" "}
-          <span className="font-semibold text-white">
-            most innovative work
-          </span>
-        </p>
+        <motion.div
+          className="relative mb-12 text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          {/* Gradient Heading */}
+          <motion.h2
+            className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-[#1E293B] to-[#F59E0B] bg-clip-text text-transparent"
+          >
+            Our Portfolio
+          </motion.h2>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {/* Decorative Line */}
+          <motion.div
+            className="w-16 h-1.5 bg-gradient-to-r from-[#1E293B] to-[#F59E0B] mx-auto mt-4 rounded-full"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          />
+        </motion.div>
+
+        {/* Description */}
+        <motion.div
+          className="max-w-3xl mx-auto mb-16 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+        >
+          <motion.p
+            className="text-lg sm:text-xl text-[#64748B] leading-relaxed"
+          >
+            Transforming visions into measurable business outcomes
+          </motion.p>
+        </motion.div>
+
+        {/* Filter Bar */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-3 mb-8 md:mb-16"
+          initial={{ y: -20 }}
+          animate={{ y: 0 }}
+        >
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-base font-medium transition-transform transform ${
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
-                  ? "bg-[#3B82F6] text-white scale-105 shadow-md"
-                  : "bg-[#F9FAFB] text-[#374151] hover:bg-[#3B82F6] hover:text-white"
+                  ? "bg-[#F59E0B] text-white shadow-md"
+                  : "bg-white text-slate-600 hover:bg-[#F59E0B] hover:text-white border border-slate-200"
               }`}
             >
               {category}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
+          {filteredProjects.slice(0, visibleProjects).map((project, index) => (
             <motion.div
               key={project.id}
-              className="relative bg-[#F9FAFB] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all cursor-pointer"
-              whileHover={{ y: -10 }}
+              className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow"
+              style={{ backgroundColor: colors.cardBg }}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              onClick={() => openModal(project)}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.3 }}
             >
-              {/* Project Image */}
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-40 md:h-48 object-cover rounded-t-xl"
-              />
+              <div
+                className="p-6 cursor-pointer h-full flex flex-col"
+                onClick={() => {
+                  setSelectedProject(project);
+                  setIsModalOpen(true);
+                }}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span
+                    className="text-xs font-medium px-3 py-1 rounded-full"
+                    style={{
+                      backgroundColor: `${colors.secondary}20`,
+                      color: colors.secondary,
+                    }}
+                  >
+                    {getProjectCategory(project)}
+                  </span>
+                  <span
+                    className="text-xs"
+                    style={{ color: colors.textSecondary }}
+                  >
+                    {project.duration}
+                  </span>
+                </div>
 
-              {/* Project Details */}
-              <div className="p-4 md:p-6">
-                <h4 className="text-base md:text-lg font-bold text-[#374151] mb-2">
+                <h3
+                  className="text-lg font-semibold mb-3"
+                  style={{ color: colors.primary }}
+                >
                   {project.title}
-                </h4>
-                <p className="text-sm text-[#94A3B8] mb-2">
-                  {project.description}
-                </p>
-                <span className="text-[#3B82F6] font-medium hover:underline cursor-pointer">
-                  View Details
-                </span>
+                </h3>
+
+                <ul className="space-y-2 mb-4 flex-grow">
+                  {project.summary.slice(0, 2).map((point, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start text-sm"
+                      style={{ color: colors.textSecondary }}
+                    >
+                      <span
+                        className="inline-block mr-2 mt-1 text-[10px]"
+                        style={{ color: colors.secondary }}
+                      >
+                        ▸
+                      </span>
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+
+                <div
+                  className="flex items-center justify-between text-xs"
+                  style={{ color: colors.textSecondary }}
+                >
+                  <span className="truncate">{project.region}</span>
+                  <span className="truncate ml-2">{project.client}</span>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
-      </motion.div>
 
-      {/* Modal for Project Details */}
-        {showModal && selectedProject && (
+        {/* Show More/Less Button */}
+        {filteredProjects.length > 6 && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={
+                visibleProjects < filteredProjects.length
+                  ? showMoreProjects
+                  : showLessProjects
+              }
+              className="px-6 py-3 rounded-full font-medium text-white transition-all duration-300 shadow-md hover:shadow-lg"
+              style={{ backgroundColor: colors.secondary }}
+            >
+              {visibleProjects < filteredProjects.length
+                ? "Show More Projects"
+                : "Show Less Projects"}
+            </button>
+          </div>
+        )}
+
+        {/* Project Modal */}
+        {isModalOpen && selectedProject && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            onClick={() => {
+              setIsModalOpen(false);
+              setSelectedProject(null);
+            }}
           >
-            <div className="bg-[#F9FAFB] rounded-lg shadow-lg max-w-sm md:max-w-lg w-full mx-4 p-6 relative">
-          <button
-            className="absolute top-2 right-2 text-[#374151] hover:text-[#3B82F6] bg-[#F9FAFB] rounded-full p-2 transition-colors duration-300"
-            onClick={() => setShowModal(false)}
-          >
-            &times;
-          </button>
-          <h3 className="text-xl font-bold mb-2 text-[#374151]">
-            {selectedProject.title}
-          </h3>
-          <p className="text-[#94A3B8] mb-4">{selectedProject.description}</p>
-
-          {/* Problem and Solution Section */}
-            <div className="mb-4">
-              <h4 className="text-lg font-semibold mb-2 text-[#374151]">
-                Problem
-              </h4>
-              <p className="text-[#94A3B8]">{selectedProject.problem}</p>
-            </div>
-            <div className="mb-4">
-              <h4 className="text-lg font-semibold mb-2 text-[#374151]">
-                Solution
-              </h4>
-              <p className="text-[#94A3B8]">{selectedProject.solution}</p>
-            </div>
-
-            {/* Additional Details */}
-            <div className="grid grid-cols-2 gap-4 mb-4">
-              <div>
-                <h4 className="text-lg font-semibold mb-2 text-[#374151]">
-                  Technologies
-                </h4>
-                <ul className="text-[#94A3B8]">
-                  {selectedProject.technologies.map((tech, index) => (
-                    <li key={index}>{tech}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold mb-2 text-[#374151]">
-                  Client
-                </h4>
-                <p className="text-[#94A3B8]">{selectedProject.client}</p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold mb-2 text-[#374151]">
-                  Duration
-                </h4>
-                <p className="text-[#94A3B8]">{selectedProject.duration}</p>
-              </div>
-            </div>
-
-            {/* View Full Project Link */}
-            <a
-              href={selectedProject.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#3B82F6] font-medium hover:underline"
+            <motion.div
+              className="bg-white rounded-2xl max-w-3xl w-full mx-4 overflow-hidden shadow-2xl"
+              style={{ maxHeight: "90vh" }}
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
             >
-              View Full Project
-            </a>
-          </div>
-        </motion.div>
-      )}
+              <div className="p-6 md:p-8">
+                {/* Modal Header */}
+                <div className="flex justify-between items-start mb-6">
+                  <div>
+                    <h3
+                      className="text-2xl font-bold mb-2"
+                      style={{ color: colors.primary }}
+                    >
+                      {selectedProject.title}
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      <span
+                        className="px-3 py-1 rounded-full text-sm"
+                        style={{
+                          backgroundColor: `${colors.secondary}20`,
+                          color: colors.secondary,
+                        }}
+                      >
+                        {selectedProject.category}
+                      </span>
+                      <span
+                        className="px-3 py-1 rounded-full text-sm"
+                        style={{
+                          backgroundColor: colors.background,
+                          color: colors.textSecondary,
+                        }}
+                      >
+                        {selectedProject.duration}
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="p-2 rounded-full hover:bg-slate-100 transition-colors"
+                    style={{ color: colors.textSecondary }}
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* Modal Content */}
+                <div className="grid gap-6 md:grid-cols-2 overflow-y-auto">
+                  {/* Left Column */}
+                  <div className="space-y-6">
+                    <div>
+                      <h4
+                        className="text-lg font-semibold mb-3"
+                        style={{ color: colors.secondary }}
+                      >
+                        Project Overview
+                      </h4>
+                      <div
+                        className="space-y-4 text-sm"
+                        style={{ color: colors.textPrimary }}
+                      >
+                        {selectedProject.summary.map((point, index) => (
+                          <p key={index} className="leading-relaxed">
+                            {point}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column */}
+                  <div className="space-y-6">
+                    <div
+                      className="p-6 rounded-xl"
+                      style={{ backgroundColor: colors.background }}
+                    >
+                      <h4
+                        className="text-lg font-semibold mb-4"
+                        style={{ color: colors.secondary }}
+                      >
+                        Key Details
+                      </h4>
+                      <div className="space-y-3">
+                        <div>
+                          <p
+                            className="text-sm font-bold"
+                            style={{ color: colors.textSecondary }}
+                          >
+                            Client
+                          </p>
+                          <p
+                            className="text-sm"
+                            style={{ color: colors.textPrimary }}
+                          >
+                            {selectedProject.client}
+                          </p>
+                        </div>
+                        <div>
+                          <p
+                            className="text-sm font-bold"
+                            style={{ color: colors.textSecondary }}
+                          >
+                            Region
+                          </p>
+                          <p
+                            className="text-sm"
+                            style={{ color: colors.textPrimary }}
+                          >
+                            {selectedProject.region}
+                          </p>
+                        </div>
+                        <div>
+                          <p
+                            className="text-sm font-bold"
+                            style={{ color: colors.textSecondary }}
+                          >
+                            Industry Focus
+                          </p>
+                          <p
+                            className="text-sm"
+                            style={{ color: colors.textPrimary }}
+                          >
+                            {selectedProject.industryFocus}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </div>
     </section>
   );
 };

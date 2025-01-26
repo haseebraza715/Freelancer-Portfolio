@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
 
+const colors = {
+  primary: "#1E293B",
+  secondary: "#F59E0B",
+  background: "#F8FAFC",
+  cardBg: "#FFFFFF",
+  textPrimary: "#1E293B",
+  textSecondary: "#64748B",
+  border: "#E2E8F0",
+};
+
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -30,7 +40,7 @@ const ScrollToTop = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform ${
+      className={`fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-gradient-to-r from-[${colors.secondary}] to-[${colors.primary}] text-white p-3 rounded-full shadow-lg hover:from-[${colors.secondary}] hover:to-[${colors.primary}] transition-all duration-300 transform ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
       aria-label="Scroll to top"

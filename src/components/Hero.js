@@ -32,7 +32,7 @@ const Hero = () => {
             {/* Curvy "B" Shape */}
             <path
               d="M50,100 C50,50 100,50 100,100 C100,150 50,150 50,100 Z M100,100 C100,50 150,50 150,100 C150,150 100,150 100,100 Z"
-              fill="#FBBF24"
+              fill="#fde047" // Updated to yellow-300
               stroke="#1E293B"
               strokeWidth="5"
             />
@@ -50,9 +50,9 @@ const Hero = () => {
               strokeWidth="5"
             />
             {/* Creative Dots */}
-            <circle cx="100" cy="50" r="5" fill="#FBBF24" />
-            <circle cx="150" cy="100" r="5" fill="#FBBF24" />
-            <circle cx="100" cy="150" r="5" fill="#FBBF24" />
+            <circle cx="100" cy="50" r="5" fill="#fde047" /> {/* Updated to yellow-300 */}
+            <circle cx="150" cy="100" r="5" fill="#fde047" /> {/* Updated to yellow-300 */}
+            <circle cx="100" cy="150" r="5" fill="#fde047" /> {/* Updated to yellow-300 */}
           </svg>
         </motion.div>
 
@@ -60,7 +60,7 @@ const Hero = () => {
         <div className="lg:w-1/2 text-center lg:text-left lg:order-2">
           {/* Tagline */}
           <motion.p
-            className="text-sm uppercase tracking-wide text-[#94A3B8] mb-4 font-medium mr-4 lg:mr-0 lg:text-left" 
+            className="text-sm uppercase tracking-wide text-[#94A3B8] mb-4 font-medium mr-4 lg:mr-0 lg:text-left"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1 }}
@@ -77,7 +77,7 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.2 }}
           >
             Creating Timeless<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#FBBF24]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#fde047]">
               Digital Experiences
             </span>
           </motion.h1>
@@ -90,7 +90,7 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.5 }}
           >
             Empowering{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#FBBF24] font-semibold">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#fde047] font-semibold">
               <Typewriter
                 words={["Ideas", "Dreams", "Visions"]}
                 loop
@@ -107,14 +107,14 @@ const Hero = () => {
           {/* Call-to-Action Buttons */}
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
             <motion.button
-              className="px-8 py-4 text-base rounded-full font-bold text-[#1E293B] bg-gradient-to-r from-[#3B82F6] to-[#FBBF24] hover:from-[#FBBF24] hover:to-[#3B82F6] transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#FBBF24] focus:ring-offset-2 focus:ring-offset-[#1E293B]"
+              className="px-8 py-4 text-base rounded-full font-bold text-[#1E293B] bg-gradient-to-r from-[#3B82F6] to-[#fde047] hover:from-[#fde047] hover:to-[#3B82F6] transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#fde047] focus:ring-offset-2 focus:ring-offset-[#1E293B]"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Get Started
             </motion.button>
             <motion.button
-              className="px-8 py-4 text-base rounded-full font-bold text-white border-2 border-[#3B82F6] hover:border-[#FBBF24] transition-all duration-300 hover:bg-[#3B82F6] hover:text-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#FBBF24] focus:ring-offset-2 focus:ring-offset-[#1E293B]"
+              className="px-8 py-4 text-base rounded-full font-bold text-white border-2 border-[#3B82F6] hover:border-[#fde047] transition-all duration-300 hover:bg-[#3B82F6] hover:text-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#fde047] focus:ring-offset-2 focus:ring-offset-[#1E293B]"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -145,7 +145,7 @@ const Hero = () => {
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 bg-[#FBBF24] rounded-full"
+              className="absolute w-2 h-2 bg-[#fde047] rounded-full" // Updated to yellow-300
               initial={{ opacity: 0, y: -100 }}
               animate={{
                 opacity: [0, 1, 0],

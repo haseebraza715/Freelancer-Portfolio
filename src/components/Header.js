@@ -21,8 +21,22 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
 
+  // Color scheme
+  const colors = {
+    primary: "#1E293B", // Navy Blue
+    secondary: "#F59E0B", // Amber
+    background: "#F8FAFC", // Off-white
+    cardBg: "#FFFFFF",
+    textPrimary: "#1E293B",
+    textSecondary: "#64748B",
+    border: "#E2E8F0",
+  };
+
   return (
-    <header className="fixed top-0 z-50 w-full bg-gradient-to-r from-[#1E293B] to-[#3B82F6] text-white shadow-lg backdrop-blur-md">
+    <header
+      className="fixed top-0 z-50 w-full bg-gradient-to-r from-[#1E293B] to-[#3B82F6] text-white shadow-lg backdrop-blur-md"
+      style={{ backgroundColor: colors.primary }}
+    >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <div className="flex items-center">
@@ -49,10 +63,12 @@ const Header = () => {
               <a
                 key={index}
                 href={item.link}
-                className="relative text-sm font-medium transition duration-300 hover:text-[#A855F7] group"
+                className="relative text-sm font-medium transition duration-300 hover:text-[#F59E0B] group"
               >
                 {item.label}
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#3B82F6] to-[#A855F7] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                <span
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#F59E0B] to-[#e58a00] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                />
               </a>
             )
           )}
@@ -82,7 +98,7 @@ const Header = () => {
                 <li key={index}>
                   {item.FlyoutContent ? (
                     <button
-                      className="w-full flex justify-between items-center text-sm font-medium hover:text-[#A855F7] transition"
+                      className="w-full flex justify-between items-center text-sm font-medium hover:text-[#F59E0B] transition"
                       onClick={() =>
                         setOpenDropdown(openDropdown === index ? null : index)
                       }
@@ -99,7 +115,7 @@ const Header = () => {
                   ) : (
                     <a
                       href={item.link}
-                      className="block text-sm font-medium hover:text-[#A855F7] transition"
+                      className="block text-sm font-medium hover:text-[#F59E0B] transition"
                     >
                       {item.label}
                     </a>
@@ -133,9 +149,14 @@ const FlyoutLink = ({ children, href, FlyoutContent }) => {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <a href={href} className="relative text-sm font-medium hover:text-[#A855F7] group">
+      <a
+        href={href}
+        className="relative text-sm font-medium hover:text-[#F59E0B] group"
+      >
         {children}
-        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#3B82F6] to-[#A855F7] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+        <span
+          className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#F59E0B] to-[#e58a00] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+        />
       </a>
       <AnimatePresence>
         {open && (
@@ -143,7 +164,7 @@ const FlyoutLink = ({ children, href, FlyoutContent }) => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 15 }}
-            className="absolute left-1/2 top-10 bg-[#1E293B] text-white shadow-md rounded-lg border border-[#3B82F6]/50"
+            className="absolute left-1/2 top-10 bg-[#1E293B] text-white shadow-md rounded-lg border border-[#F59E0B]/50"
             style={{ translateX: "-50%", width: "240px" }}
           >
             <div className="p-4">{<FlyoutContent />}</div>
@@ -156,7 +177,7 @@ const FlyoutLink = ({ children, href, FlyoutContent }) => {
 
 const ServicesContent = () => (
   <div>
-    <h3 className="mb-2 font-semibold text-[#3B82F6]">Our Services</h3>
+    <h3 className="mb-2 font-semibold text-[#F59E0B]">Our Services</h3>
     <ul className="space-y-2">
       <ServiceLink href="#web-dev" label="Web Development" />
       <ServiceLink href="#mobile-dev" label="Mobile App Development" />
@@ -168,7 +189,7 @@ const ServicesContent = () => (
 
 const PortfolioContent = () => (
   <div>
-    <h3 className="mb-2 font-semibold text-[#3B82F6]">Our Portfolio</h3>
+    <h3 className="mb-2 font-semibold text-[#F59E0B]">Our Portfolio</h3>
     <ul className="space-y-2">
       <ServiceLink href="#websites" label="Websites" />
       <ServiceLink href="#mobile-apps" label="Mobile Apps" />
@@ -178,13 +199,10 @@ const PortfolioContent = () => (
 );
 
 const ServiceLink = ({ href, label }) => (
-  <motion.li
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
+  <motion.li whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
     <a
       href={href}
-      className="block px-3 py-2 text-sm text-gray-300 hover:bg-[#3B82F6]/20 hover:text-white rounded-md transition-all duration-300"
+      className="block px-3 py-2 text-sm text-gray-300 hover:bg-[#F59E0B]/20 hover:text-white rounded-md transition-all duration-300"
     >
       {label}
     </a>

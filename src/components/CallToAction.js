@@ -1,46 +1,138 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+const colors = {
+  primary: "#1E293B",       // Navy Blue
+  secondary: "#F59E0B",     // Amber
+  background: "#F8FAFC",    // Off-white
+  cardBg: "#FFFFFF",
+  textPrimary: "#1E293B",
+  textSecondary: "#64748B",
+  border: "#E2E8F0",
+};
+
 const CallToAction = () => {
   return (
-    <motion.section
-      className="relative bg-[#1E293B] py-20 overflow-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+    <section
+      className="relative py-20 md:py-32 overflow-hidden"
+      style={{ backgroundColor: colors.background }}
       aria-labelledby="cta-heading"
     >
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/10 via-[#1E293B] to-[#3B82F6]/10 opacity-50 z-0"></div>
+      {/* Decorative Gradient Background */}
+      <div
+        className="absolute inset-0 opacity-20 -z-10"
+        style={{
+          background: `radial-gradient(circle at 50% 50%, ${colors.secondary}20, transparent 70%)`,
+        }}
+      ></div>
 
-      {/* Content Section */}
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+      {/* Animated Floating Circles */}
+      <motion.div
+        className="absolute w-24 h-24 rounded-full opacity-30"
+        style={{ backgroundColor: colors.secondary, top: "10%", left: "5%" }}
+        animate={{
+          y: [0, -20, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          repeatType: "mirror",
+          ease: "easeInOut",
+        }}
+      ></motion.div>
+      <motion.div
+        className="absolute w-16 h-16 rounded-full opacity-30"
+        style={{ backgroundColor: colors.secondary, top: "30%", right: "10%" }}
+        animate={{
+          y: [0, -15, 0],
+          scale: [1, 1.05, 1],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          repeatType: "mirror",
+          ease: "easeInOut",
+        }}
+      ></motion.div>
+      <motion.div
+        className="absolute w-20 h-20 rounded-full opacity-30"
+        style={{ backgroundColor: colors.secondary, bottom: "20%", left: "15%" }}
+        animate={{
+          y: [0, -10, 0],
+          scale: [1, 1.08, 1],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          repeatType: "mirror",
+          ease: "easeInOut",
+        }}
+      ></motion.div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         {/* Title */}
-        <motion.h4
+        <motion.h2
           id="cta-heading"
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-[#F9FAFB]"
-          initial={{ y: -30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-3xl md:text-4xl font-bold mb-6"
+          style={{ color: colors.primary }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
         >
           Ready to bring{" "}
-          <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#FBBF24]">
-            your vision
-          </span>{" "}
+          <span style={{ color: colors.secondary }}>Your Vision</span>{" "}
           to life?
-        </motion.h4>
+        </motion.h2>
+
+        {/* Subtitle */}
+        <motion.p
+          className="text-lg md:text-xl max-w-2xl mx-auto mb-10"
+          style={{ color: colors.textSecondary }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          Let’s collaborate to create something extraordinary. Our team is ready to help you achieve your goals.
+        </motion.p>
 
         {/* Call-to-Action Button */}
-        <div className="flex justify-center">
+        <motion.div
+          className="flex justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+        >
           <motion.button
+            className="px-8 py-3 rounded-full font-medium text-white transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2"
+            style={{
+              backgroundColor: colors.secondary,
+              color: colors.primary,
+              boxShadow: `0 4px 24px ${colors.secondary}40`,
+            }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative w-full max-w-xs rounded-lg bg-gradient-to-r from-[#3B82F6] to-[#FBBF24] px-8 py-4 text-lg font-medium text-white shadow-lg hover:from-[#3B82F6]/90 hover:to-[#FBBF24]/90 transition-all focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/50"
           >
             Get In Touch
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
           </motion.button>
-        </div>
+        </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
